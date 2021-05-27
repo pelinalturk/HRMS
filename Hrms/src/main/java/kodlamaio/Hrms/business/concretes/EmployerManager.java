@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.Hrms.business.abstracts.EmployerService;
-import kodlamaio.Hrms.business.abstracts.verificationCodeService;
+import kodlamaio.Hrms.business.abstracts.VerificationCodeService;
 import kodlamaio.Hrms.core.utilities.result.ErrorResult;
 import kodlamaio.Hrms.core.utilities.result.Result;
 import kodlamaio.Hrms.core.utilities.result.SuccessResult;
@@ -21,7 +21,7 @@ public class EmployerManager implements EmployerService{
 	EmployerDao employerDao;
 	UserDao userDao;
 	EmailValidationManager emailValidation;
-	verificationCodeService verificationCode;
+	VerificationCodeService verificationCode;
 	@Autowired
 	public EmployerManager(EmployerDao employerDao) 
 	{
@@ -39,7 +39,7 @@ public class EmployerManager implements EmployerService{
 		return new ErrorResult("Bu mail adresi sistemde kayıtlıdır.");
 		}
 		//.substring(employer.getWeb_address().indexOf(".")))
-		else if(employer.getWeb_address().contains(employer.getEmail().substring(employer.getEmail().indexOf("@")+1,employer.getEmail().indexOf("."))))
+	   if(employer.getWeb_address().contains(employer.getEmail().substring(employer.getEmail().indexOf("@")+1,employer.getEmail().indexOf("."))))
 		{
 		   return new ErrorResult("Girdiğiniz mailin şirket maili olduğuna emin olunuz!");		
 		}

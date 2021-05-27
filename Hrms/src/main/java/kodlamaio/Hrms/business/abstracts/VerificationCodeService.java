@@ -4,8 +4,8 @@ import java.util.List;
 
 import kodlamaio.Hrms.core.utilities.result.Result;
 import kodlamaio.Hrms.entities.concretes.User;
+import kodlamaio.Hrms.entities.concretes.VerificationCode;
 
-public interface verificationCodeService {
-	List<User> getAll();
+public interface VerificationCodeService {
 	Result add(User user);
 }

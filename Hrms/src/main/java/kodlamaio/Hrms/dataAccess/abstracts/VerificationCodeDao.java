@@ -2,10 +2,9 @@ package kodlamaio.Hrms.dataAccess.abstracts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import kodlamaio.Hrms.entities.concretes.User;
+import kodlamaio.Hrms.entities.concretes.VerificationCode;
 
 @Repository
-public interface UserDao extends JpaRepository<User, Integer> {
-	User findByEmail(String email);
+public interface VerificationCodeDao extends JpaRepository<VerificationCode, Integer>{
+	
 }
