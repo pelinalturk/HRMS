@@ -12,4 +12,5 @@ public interface JobAdvertisementService {
 	//DataResult<JobAdvertisement> getByJobAdvertisementName(String name);
 	DataResult<List<JobAdvertisement>> getByIsActive();
 	DataResult<List<JobAdvertisement>>getByIsActiveAndCreatedDate();
+	DataResult<List<JobAdvertisement>>getByEmployer_CompanyName(String companyName);
 }

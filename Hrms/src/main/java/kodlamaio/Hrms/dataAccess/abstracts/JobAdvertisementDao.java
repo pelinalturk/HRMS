@@ -17,4 +17,7 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	//Tarihe göre sırala
 	@Query("From JobAdvertisement where isActive=:true")
 	List<JobAdvertisement>getByIsActiveAndCreatedDate();
+	
+	//bir firmaya ait tüm aktif iş ilanları
+	List<JobAdvertisement> getByEmployer_CompanyName(String companyName);
 }

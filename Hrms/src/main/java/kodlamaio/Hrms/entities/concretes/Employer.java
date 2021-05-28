@@ -34,7 +34,7 @@ public class Employer extends User{
 	
 	@NotBlank(message ="Şirket ismi alanı boş olamaz!")
 	@Column(name="company_name")
-	private String company_name;
+	private String companyName;
 	
 	@NotBlank(message = "Web adres alanı boş olamaz!")
 	@Column(name="web_address")

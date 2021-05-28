@@ -49,9 +49,9 @@ public class JobAdvertisementController {
 	public DataResult<List<JobAdvertisement>>getByIsActiveAndCreatedDate(){
 		return this.jobAdvertisementService.getByIsActiveAndCreatedDate();
 	}
-//	@GetMapping("/getByJobAdvertisementName")
-//	public DataResult<JobAdvertisement> getByJobAdvertisementName(String name)
-//	{
-//		return this.jobAdvertisementService.getByJobAdvertisementName(name);
-//	}
+	
+	@GetMapping("/getByEmployer")
+	public DataResult<List<JobAdvertisement>> getByEmployer_CompanyName(String companyName){
+		return this.jobAdvertisementService.getByEmployer_CompanyName(companyName);
+	}
 }

@@ -49,4 +49,10 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessDataResult<List<JobAdvertisement>>(this.JobAdvertisementDao.findAll(sort),"Başarılı");
 	}
 
+	@Override
+	public DataResult<List<JobAdvertisement>> getByEmployer_CompanyName(String companyName) {
+		return new SuccessDataResult<List<JobAdvertisement>>
+		(this.JobAdvertisementDao.getByEmployer_CompanyName(companyName), "Data Listelendi");
+	}
+
 }
