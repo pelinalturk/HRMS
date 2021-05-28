@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -21,19 +20,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="job_titles")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "job_advertisements"})
-public class JobPositions {
+
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "job_advertisements"})
+@Table(name = "cities")
+public class City {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
-	@Column(name="id")
+	@Column(name = "id")
 	private int id;
 	
-	@NotBlank(message = "Pozisyon ismi boş bırakılamaz!")
-	@Column(name="title")
-	private String title;
+	@Column(name = "name")
+	private String name;
 	
-	//@OneToMany(mappedBy = "jobPositions") //job_id
+	//@OneToMany(mappedBy = "city")
 	//private List<JobAdvertisement> jobAdvertisements;
 }
