@@ -10,4 +10,6 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getAll();
 	Result add(JobAdvertisement jobAdvertisement);
 	//DataResult<JobAdvertisement> getByJobAdvertisementName(String name);
+	DataResult<List<JobAdvertisement>> getByIsActive();
+	DataResult<List<JobAdvertisement>>getByIsActiveAndCreatedDate();
 }

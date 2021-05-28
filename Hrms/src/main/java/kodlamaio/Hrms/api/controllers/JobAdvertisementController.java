@@ -39,6 +39,16 @@ public class JobAdvertisementController {
 		return this.jobAdvertisementService.add(jobAdvertisement);
 	}
 	
+	@GetMapping("/getByIsActive")
+	public DataResult<List<JobAdvertisement>> getByIsActive()
+	{
+		return this.jobAdvertisementService.getAll();
+	}
+	
+	@GetMapping("/getAllAsc")
+	public DataResult<List<JobAdvertisement>>getByIsActiveAndCreatedDate(){
+		return this.jobAdvertisementService.getByIsActiveAndCreatedDate();
+	}
 //	@GetMapping("/getByJobAdvertisementName")
 //	public DataResult<JobAdvertisement> getByJobAdvertisementName(String name)
 //	{

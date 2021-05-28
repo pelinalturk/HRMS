@@ -51,7 +51,7 @@ public class JobAdvertisement {
 	private int countOfOpenPosition;
 	
 	@Column(name = "created_date")
-	private LocalDate createdAtDate;
+	private LocalDate createdDate;
 	
 	@Column(name = "is_active")
 	private boolean isActive;
