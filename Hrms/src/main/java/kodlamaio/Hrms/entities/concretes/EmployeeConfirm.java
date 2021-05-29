@@ -32,7 +32,7 @@ public class EmployeeConfirm {
 	@Column(name = "id")
 	@JsonIgnore
 	private int id;
-	
+	/**/
 	@Column(name = "employee_id")
 	private int employee;
 	

@@ -21,6 +21,7 @@ import kodlamaio.Hrms.entities.concretes.Employer;
 public class EmployerController {
 	private EmployerService employerService;
 	
+	
 	@Autowired
 	public EmployerController(EmployerService employerService)
 	{
