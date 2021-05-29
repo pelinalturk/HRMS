@@ -10,7 +10,7 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getAll();
 	Result add(JobAdvertisement jobAdvertisement);
 	//DataResult<JobAdvertisement> getByJobAdvertisementName(String name);
-	DataResult<List<JobAdvertisement>> getByIsActive();
-	DataResult<List<JobAdvertisement>>getByIsActiveAndCreatedDate();
+	DataResult<List<JobAdvertisement>> findAllByIsActiveTrue();
+	DataResult<List<JobAdvertisement>> findAllByIsActiveTrueOrderByCreatedDateAsc();
 	DataResult<List<JobAdvertisement>>getByEmployer_CompanyName(String companyName);
 }

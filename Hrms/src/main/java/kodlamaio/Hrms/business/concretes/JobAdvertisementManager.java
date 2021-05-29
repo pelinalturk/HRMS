@@ -39,20 +39,21 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	}
 
 	@Override
-	public DataResult<List<JobAdvertisement>> getByIsActive() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.JobAdvertisementDao.getByIsActive(),"Aktif iş ilanları listelendi");
+	public DataResult<List<JobAdvertisement>> findAllByIsActiveTrue() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.JobAdvertisementDao.findAllByIsActiveTrue(),"Aktif iş ilanları listelendi");
 	}
 
-	@Override
-	public DataResult<List<JobAdvertisement>> getByIsActiveAndCreatedDate() {
-		Sort sort = Sort.by(Sort.Direction.ASC, "createdDate");
-		return new SuccessDataResult<List<JobAdvertisement>>(this.JobAdvertisementDao.findAll(sort),"Başarılı");
-	}
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getByEmployer_CompanyName(String companyName) {
 		return new SuccessDataResult<List<JobAdvertisement>>
 		(this.JobAdvertisementDao.getByEmployer_CompanyName(companyName), "Data Listelendi");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> findAllByIsActiveTrueOrderByCreatedDateAsc() {
+		
+		return new SuccessDataResult<List<JobAdvertisement>>(this.JobAdvertisementDao.findAllByIsActiveTrueOrderByCreatedDateAsc(), "Aktif iş ilanları oluşturulma tarihine göre listelendi.");
 	}
 
 }

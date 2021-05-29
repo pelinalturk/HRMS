@@ -40,14 +40,15 @@ public class JobAdvertisementController {
 	}
 	
 	@GetMapping("/getByIsActive")
-	public DataResult<List<JobAdvertisement>> getByIsActive()
+	public DataResult<List<JobAdvertisement>> findAllByIsActiveTrue()
 	{
-		return this.jobAdvertisementService.getAll();
+		return 
+				this.jobAdvertisementService.findAllByIsActiveTrue();
 	}
 	
 	@GetMapping("/getAllAsc")
-	public DataResult<List<JobAdvertisement>>getByIsActiveAndCreatedDate(){
-		return this.jobAdvertisementService.getByIsActiveAndCreatedDate();
+	public DataResult<List<JobAdvertisement>>findAllByIsActiveTrueOrderByCreatedDateAsc(){
+		return this.jobAdvertisementService.findAllByIsActiveTrueOrderByCreatedDateAsc();
 	}
 	
 	@GetMapping("/getByEmployer")

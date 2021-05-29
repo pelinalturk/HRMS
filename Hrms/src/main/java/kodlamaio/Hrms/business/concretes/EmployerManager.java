@@ -23,10 +23,11 @@ public class EmployerManager implements EmployerService{
 	EmailValidationManager emailValidation;
 	VerificationCodeService verificationCode;
 	@Autowired
-	public EmployerManager(EmployerDao employerDao) 
+	public EmployerManager(EmployerDao employerDao,UserDao userDao) 
 	{
 		super();
 		this.employerDao=employerDao;
+		this.userDao = userDao;
 	}
 	@Override
 	public List<Employer> getall() {
@@ -39,7 +40,7 @@ public class EmployerManager implements EmployerService{
 		return new ErrorResult("Bu mail adresi sistemde kayıtlıdır.");
 		}
 		//.substring(employer.getWeb_address().indexOf(".")))
-	   if(employer.getWeb_address().contains(employer.getEmail().substring(employer.getEmail().indexOf("@")+1,employer.getEmail().indexOf("."))))
+	   if(!employer.getWeb_address().contains(employer.getEmail().substring(employer.getEmail().indexOf("@")+1,employer.getEmail().indexOf("."))))
 		{
 		   return new ErrorResult("Girdiğiniz mailin şirket maili olduğuna emin olunuz!");		
 		}

@@ -2,6 +2,7 @@ package kodlamaio.Hrms.api.controllers;
 
 import java.util.List;
 
+import javax.persistence.PostUpdate;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +36,5 @@ public class EmployerController {
 	public Result add(@Valid @RequestBody Employer employer) {
 		return this.employerService.add(employer);
 	}
+	
 }
