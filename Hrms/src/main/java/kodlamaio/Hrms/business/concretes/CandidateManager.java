@@ -11,6 +11,7 @@ import kodlamaio.Hrms.core.utilities.result.ErrorResult;
 import kodlamaio.Hrms.core.utilities.result.Result;
 import kodlamaio.Hrms.core.utilities.result.SuccessResult;
 import kodlamaio.Hrms.core.utilities.validation.EmailValidationManager;
+import kodlamaio.Hrms.core.utilities.validation.EmailValidationService;
 import kodlamaio.Hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.Hrms.dataAccess.abstracts.UserDao;
 import kodlamaio.Hrms.dataAccess.abstracts.VerificationCodeDao;
@@ -23,6 +24,7 @@ public class CandidateManager implements CandidateService{
 	private UserDao userDao;
 	private VerificationCodeService verificationService;
 	//private VerificationCodeDao codeDao;
+	//private EmailValidationService emailValidationService;
 	
 	@Autowired
 	public CandidateManager(CandidateDao candidateDao, UserDao userDao,VerificationCodeService verificationService) {

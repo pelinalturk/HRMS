@@ -1,10 +1,10 @@
 package kodlamaio.Hrms.entities.concretes;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,46 +25,27 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "job_advertisements")
-public class JobAdvertisement {
+@Table(name = "employee_confirms")
+public class EmployeeConfirm {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
+	@JsonIgnore
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name = "job_title_id")
-	private JobPositions jobPositions;
+	@Column(name = "employee_id")
+	private int employee;
 	
-	@ManyToOne
-	@JoinColumn(name = "city_id")
-	private City city;
+	@ManyToOne(targetEntity = Employer.class, fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "employer_id", referencedColumnName = "id", nullable = false)
+	private Employer employerId;
 	
-	@ManyToOne
-	@JoinColumn(name = "employer_id")
-	private Employer employer;
-	
-	@Column(name = "job_detail")
-	private String jobDetail;
-	
-	@Column(name = "min_wage")
-	private int minWage;
-	
-	@Column(name = "max_wage")
-	private int maxWage;
-	
-	@Column(name = "count_of_open_position")
-	private int countOfOpenPosition;
+	@Column(name = "is_confirmed")
+	private boolean isConfirmed;
 	
 	@JsonIgnore
-	@Column(name = "created_date")
+	@Column(name = "confirm_date")
 	@CreationTimestamp
 	@Temporal(javax.persistence.TemporalType.DATE)
-	private Date createdDate;
-	
-	@Column(name = "is_active")
-	private boolean isActive;
-	
-	@Column(name = "application_deadline")
-	private LocalDate applicationDeadline;
+	private Date confirmDate;
 }
