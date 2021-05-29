@@ -8,4 +8,5 @@ import kodlamaio.Hrms.entities.concretes.Employer;
 public interface EmployerService {
 	List<Employer> getall();
 	Result add(Employer employer);
+	
 }

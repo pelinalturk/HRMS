@@ -56,4 +56,10 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessDataResult<List<JobAdvertisement>>(this.JobAdvertisementDao.findAllByIsActiveTrueOrderByCreatedDateAsc(), "Aktif iş ilanları oluşturulma tarihine göre listelendi.");
 	}
 
+	@Override
+	public Result update(JobAdvertisement jobAdvertisement) {
+		this.JobAdvertisementDao.save(jobAdvertisement);
+		return new SuccessResult("güncellendi");
+	}
+	
 }

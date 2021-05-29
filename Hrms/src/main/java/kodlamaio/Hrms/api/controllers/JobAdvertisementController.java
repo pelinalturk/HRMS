@@ -55,4 +55,10 @@ public class JobAdvertisementController {
 	public DataResult<List<JobAdvertisement>> getByEmployer_CompanyName(String companyName){
 		return this.jobAdvertisementService.getByEmployer_CompanyName(companyName);
 	}
+	
+	@PostMapping("/update")
+	public void update(@RequestBody JobAdvertisement jobAdvertisement)
+	{
+		this.jobAdvertisementService.update(jobAdvertisement);
+	}
 }

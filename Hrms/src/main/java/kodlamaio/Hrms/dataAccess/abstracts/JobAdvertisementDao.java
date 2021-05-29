@@ -18,4 +18,6 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	
 	//bir firmaya ait tüm aktif iş ilanları
 	List<JobAdvertisement> getByEmployer_CompanyName(String companyName);
+	
+	
 }

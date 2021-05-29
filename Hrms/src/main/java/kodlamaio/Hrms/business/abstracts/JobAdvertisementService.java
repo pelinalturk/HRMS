@@ -13,4 +13,5 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> findAllByIsActiveTrue();
 	DataResult<List<JobAdvertisement>> findAllByIsActiveTrueOrderByCreatedDateAsc();
 	DataResult<List<JobAdvertisement>>getByEmployer_CompanyName(String companyName);
+	Result update(JobAdvertisement jobAdvertisement);
 }
