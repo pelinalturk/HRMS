@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,6 +28,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name="candidates")
 @PrimaryKeyJoinColumn(name="id")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Candidate extends User{
 	
 	@NotBlank(message= "İsim alanı boş olamaz!")
@@ -45,10 +48,10 @@ public class Candidate extends User{
 	@Column(name="birth_year")
 	private LocalDate birth_year;
 	
-	@JsonIgnore
-	@Column(name ="is_active",columnDefinition = "true")
-	@Getter
-	private boolean is_active = true;
+	//@JsonIgnore
+	@Column(name ="is_active")
+	//@Getter
+	private boolean is_active;
 	
 	@JsonIgnore
 	@Column(name= "record_date")

@@ -35,7 +35,7 @@ public class JobPositions {
 	@Column(name="title")
 	private String title;
 	
-	@OneToMany(mappedBy = "jobPositions") //job_id
+	/*@OneToMany(mappedBy = "jobPositions") //job_id
 	@JsonIgnore
-	private List<JobAdvertisement> jobAdvertisements;
+	private List<JobAdvertisement> jobAdvertisements;*/
 }

@@ -1,5 +1,6 @@
 package kodlamaio.Hrms.entities.concretes;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -45,8 +46,8 @@ public class Employer extends User{
 	private String phone_number;
 	
 	@JsonIgnore
-	@Column(name ="is_active",columnDefinition = "true")
-	@Getter
+	//@Column(name ="is_active",columnDefinition = "true")
+	@Column(name ="is_active")
 	private boolean is_active = true;
 	
 	@JsonIgnore

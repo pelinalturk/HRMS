@@ -5,7 +5,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,40 +12,41 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "employee_confirms")
-public class EmployeeConfirm {
+@Table(name = "techs")
+public class Technology {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	@JsonIgnore
 	private int id;
-	/**/
-	@Column(name = "employee_id")
-	private int employee;
 	
-	@ManyToOne(targetEntity = Employer.class, fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "employer_id", referencedColumnName = "id", nullable = false)
-	private Employer employerId;
+	@JsonProperty(access = Access.WRITE_ONLY)
+	@ManyToOne(targetEntity = CurriculumVitae.class)
+	@JoinColumn(name = "curriculum_vitae_id")
+	private CurriculumVitae cvId;
 	
-	@Column(name = "is_confirmed")
-	private boolean isConfirmed;
+	@NotBlank(message = "Açıklama kısmı boş geçilemez.")
+	@Column(name = "description")
+	private String description;
 	
 	@JsonIgnore
-	@Column(name = "confirm_date")
+	@Column(name = "creation_date")
 	@CreationTimestamp
 	@Temporal(javax.persistence.TemporalType.DATE)
-	private Date confirmDate;
+	private Date creationDate;
 }
