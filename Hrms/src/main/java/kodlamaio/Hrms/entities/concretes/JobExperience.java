@@ -43,9 +43,9 @@ public class JobExperience {
 	@Column(name = "company_name")
 	private String companyName;
 	
-	@ManyToOne(targetEntity = JobPositions.class, fetch = FetchType.LAZY)
+	@ManyToOne(targetEntity = JobPosition.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "job_title_id",referencedColumnName = "id",nullable = false)
-	private JobPositions jobTitleId;
+	private JobPosition jobTitleId;
 	
 	@NotBlank(message = "Lütfen işe başlama tarihini giriniz!")
 	@Column(name = "starting_date")

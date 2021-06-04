@@ -15,6 +15,8 @@ import kodlamaio.Hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.Hrms.core.utilities.result.DataResult;
 import kodlamaio.Hrms.core.utilities.result.Result;
 import kodlamaio.Hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.Hrms.entities.dtos.JobAdvertisementAddDto;
+import kodlamaio.Hrms.entities.dtos.JobAdvertisementDto;
 
 @RestController
 @RequestMapping("/api/JobAdvertisement")
@@ -28,31 +30,31 @@ public class JobAdvertisementController {
 		this.jobAdvertisementService = jobAdvertisementService;
 	}
 	
-	@GetMapping("/getall")
-	public DataResult<List<JobAdvertisement>> getAll(){
-		return this.jobAdvertisementService.getAll();
-	}
+//	@GetMapping("/getall")
+//	public DataResult<List<JobAdvertisement>> getAll(){
+//		return this.jobAdvertisementService.getAll();
+//	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody JobAdvertisement jobAdvertisement) 
+	public Result add(@RequestBody JobAdvertisementAddDto jobAdvertisementAddDto) 
 	{
-		return this.jobAdvertisementService.add(jobAdvertisement);
+		return this.jobAdvertisementService.add(jobAdvertisementAddDto);
 	}
 	
 	@GetMapping("/getByIsActive")
-	public DataResult<List<JobAdvertisement>> findAllByIsActiveTrue()
+	public DataResult<List<JobAdvertisementDto>> findAllByIsActiveTrue()
 	{
 		return 
 				this.jobAdvertisementService.findAllByIsActiveTrue();
 	}
 	
 	@GetMapping("/getAllAsc")
-	public DataResult<List<JobAdvertisement>>findAllByIsActiveTrueOrderByCreatedDateAsc(){
+	public DataResult<List<JobAdvertisementDto>>findAllByIsActiveTrueOrderByCreatedDateAsc(){
 		return this.jobAdvertisementService.findAllByIsActiveTrueOrderByCreatedDateAsc();
 	}
 	
 	@GetMapping("/getByEmployer")
-	public DataResult<List<JobAdvertisement>> getByEmployer_CompanyName(String companyName){
+	public DataResult<List<JobAdvertisementDto>> getByEmployer_CompanyName(String companyName){
 		return this.jobAdvertisementService.getByEmployer_CompanyName(companyName);
 	}
 	

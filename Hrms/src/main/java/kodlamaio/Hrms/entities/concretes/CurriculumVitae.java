@@ -48,7 +48,7 @@ public class CurriculumVitae {
 	private String photo;
 	
 	@Column(name = "description")
-	private String decription;
+	private String description;
 	
 	@Column(name = "last_updated_date")
 	private LocalDate lastOfUptade;
@@ -63,10 +63,10 @@ public class CurriculumVitae {
 	private List<School> school;
 	
 	@OneToMany(mappedBy = "cvId")
-	private List<Technology> techs;
+	private List<Technology> technology;
 	
 	@OneToMany(mappedBy = "cvId")
-	private List<ForeignLanguage> foreignLanguages;
+	private List<ForeignLanguage> foreignLanguage;
 	
 	@OneToMany(mappedBy = "cvId")
 	private List<JobExperience> jobExperience;

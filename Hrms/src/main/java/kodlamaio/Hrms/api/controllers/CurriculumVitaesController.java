@@ -19,6 +19,7 @@ import kodlamaio.Hrms.business.abstracts.CurriculumVitaeService;
 import kodlamaio.Hrms.core.utilities.result.DataResult;
 import kodlamaio.Hrms.core.utilities.result.Result;
 import kodlamaio.Hrms.entities.concretes.CurriculumVitae;
+import kodlamaio.Hrms.entities.dtos.CandidateWithCvDto;
 
 @RestController
 @RequestMapping("/api/curriculumVitaesController")
@@ -39,6 +40,11 @@ public class CurriculumVitaesController {
 	@PostMapping("/add")
 	public Result add(@Valid @RequestBody CurriculumVitae curriculumVitae) {
 		return this.curriculumVitaeService.add(curriculumVitae);
+	}
+	
+	@GetMapping("/getCandidateCv")
+	public DataResult<List<CandidateWithCvDto>> findByCandidateId(@RequestParam int id){
+		return this.curriculumVitaeService.findByCandidateId(id);
 	}
 	
 	@PutMapping("/uploadImage")

@@ -34,7 +34,7 @@ public class JobAdvertisement {
 	
 	@ManyToOne
 	@JoinColumn(name = "job_title_id")
-	private JobPositions jobPositions;
+	private JobPosition jobPosition;
 	
 	@ManyToOne
 	@JoinColumn(name = "city_id")

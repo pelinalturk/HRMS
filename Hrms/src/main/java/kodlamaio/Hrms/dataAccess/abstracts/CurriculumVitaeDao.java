@@ -18,6 +18,6 @@ public interface CurriculumVitaeDao extends JpaRepository<CurriculumVitae, Integ
 	 * tecrübeleri yıla göre tersten sıralanabilmelidir. Hala çalışıyorsa yine bu tecrübesi en üstte ve 
 	 * "devam ediyor" olarak görüntülenmelidir.*/
 	//List<CurriculumVitae> findAllByJobExperience_StartingDateDesc();
-	
+	List<CurriculumVitae> findByCandidateId(int id);
 	
 }
