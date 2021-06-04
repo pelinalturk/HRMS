@@ -2,10 +2,8 @@ package kodlamaio.Hrms.entities.concretes;
 
 import java.time.LocalDate;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -66,4 +64,6 @@ public class School {
 	@Temporal(javax.persistence.TemporalType.DATE)
 	@Column(name = "creation_date")
 	private Date dateOfUpload;
+	
+	
 }

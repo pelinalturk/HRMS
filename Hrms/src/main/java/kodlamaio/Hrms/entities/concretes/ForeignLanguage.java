@@ -57,4 +57,6 @@ public class ForeignLanguage {
 	@Column(name = "level")
 	private char languageLevel;
 	
+	
+	
 }

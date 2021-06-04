@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -59,13 +60,13 @@ public class CurriculumVitae {
 	private LocalDate creationDate;
 	
 	@OneToMany(mappedBy = "cvId")
-	private List<ForeignLanguage> foreignLanguages;
+	private List<School> school;
 	
 	@OneToMany(mappedBy = "cvId")
 	private List<Technology> techs;
 	
 	@OneToMany(mappedBy = "cvId")
-	private List<School> school;
+	private List<ForeignLanguage> foreignLanguages;
 	
 	@OneToMany(mappedBy = "cvId")
 	private List<JobExperience> jobExperience;

@@ -2,11 +2,18 @@ package kodlamaio.Hrms.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import kodlamaio.Hrms.business.abstracts.CurriculumVitaeService;
 import kodlamaio.Hrms.core.utilities.result.DataResult;
@@ -30,17 +37,23 @@ public class CurriculumVitaesController {
 	}
 	
 	@PostMapping("/add")
-	public Result add(CurriculumVitae curriculumVitae) {
+	public Result add(@Valid @RequestBody CurriculumVitae curriculumVitae) {
 		return this.curriculumVitaeService.add(curriculumVitae);
 	}
 	
-	@GetMapping("/findAllByendingDateDesc")
-	public List<CurriculumVitae> findAllByendingDateDesc(){
-		return this.curriculumVitaeService.findAllByendingDateDesc();
+	@PutMapping("/uploadImage")
+	public Result saveImage(@RequestBody MultipartFile file,@RequestParam int curriculumVitaeID) {
+		return this.curriculumVitaeService.saveImage(file, curriculumVitaeID);
+		
 	}
 	
-	@GetMapping("findAllByJobExperience_StartingDateDesc")
-	public List<CurriculumVitae> findAllByJobExperience_StartingDateDesc(){
-		return this.curriculumVitaeService.findAllByJobExperience_StartingDateDesc();
-	}
+//	@GetMapping("/findAllByendingDateDesc")
+//	public List<CurriculumVitae> findAllByendingDateDesc(){
+//		return this.curriculumVitaeService.findAllByendingDateDesc();
+//	}
+//	
+//	@GetMapping("findAllByJobExperience_StartingDateDesc")
+//	public List<CurriculumVitae> findAllByJobExperience_StartingDateDesc(){
+//		return this.curriculumVitaeService.findAllByJobExperience_StartingDateDesc();
+//	}
 }

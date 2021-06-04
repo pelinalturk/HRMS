@@ -56,7 +56,7 @@ public class Employer extends User{
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date record_time;
 	
-	@OneToMany(mappedBy = "employer") //employer_id
-	@JsonIgnore 
-	private List<JobAdvertisement>jobAdvertisements;
+//	@OneToMany(mappedBy = "employer") //employer_id
+//	@JsonIgnore 
+//	private List<JobAdvertisement>jobAdvertisements;
 }
