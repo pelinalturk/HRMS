@@ -33,7 +33,7 @@ public class CurriculumVitaesController {
 	}
 	
 	@GetMapping("/getAll")
-	public DataResult<List<CurriculumVitae>> getAll(){
+	public DataResult<List<CandidateWithCvDto>> getAll(){
 		return this.curriculumVitaeService.getAll();
 	}
 	
@@ -42,10 +42,10 @@ public class CurriculumVitaesController {
 		return this.curriculumVitaeService.add(curriculumVitae);
 	}
 	
-	@GetMapping("/getCandidateCv")
-	public DataResult<List<CandidateWithCvDto>> findByCandidateId(@RequestParam int id){
-		return this.curriculumVitaeService.findByCandidateId(id);
-	}
+//	@GetMapping("/getCandidateCv")
+//	public DataResult<List<CandidateWithCvDto>> findByCandidateId(@RequestParam int id){
+//		return this.curriculumVitaeService.findByCandidateId(id);
+//	}
 	
 	@PutMapping("/uploadImage")
 	public Result saveImage(@RequestBody MultipartFile file,@RequestParam int curriculumVitaeID) {
@@ -55,11 +55,11 @@ public class CurriculumVitaesController {
 	
 //	@GetMapping("/findAllByendingDateDesc")
 //	public List<CurriculumVitae> findAllByendingDateDesc(){
-//		return this.curriculumVitaeService.findAllByendingDateDesc();
+//		return this.curriculumVitaeService.findBySchool_EndingDateDesc();
 //	}
 //	
 //	@GetMapping("findAllByJobExperience_StartingDateDesc")
 //	public List<CurriculumVitae> findAllByJobExperience_StartingDateDesc(){
-//		return this.curriculumVitaeService.findAllByJobExperience_StartingDateDesc();
+//		return this.curriculumVitaeService.findByJobExperience_StartingDateDesc();
 //	}
 }

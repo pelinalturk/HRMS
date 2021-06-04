@@ -59,16 +59,16 @@ public class CurriculumVitae {
 	@Column(name = "creation_date")
 	private LocalDate creationDate;
 	
-	@OneToMany(mappedBy = "cvId")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cvId")
 	private List<School> school;
 	
-	@OneToMany(mappedBy = "cvId")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cvId")
 	private List<Technology> technology;
 	
-	@OneToMany(mappedBy = "cvId")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cvId")
 	private List<ForeignLanguage> foreignLanguage;
 	
-	@OneToMany(mappedBy = "cvId")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cvId")
 	private List<JobExperience> jobExperience;
 	
 }

@@ -10,11 +10,11 @@ import kodlamaio.Hrms.entities.concretes.CurriculumVitae;
 import kodlamaio.Hrms.entities.dtos.CandidateWithCvDto;
 
 public interface CurriculumVitaeService {
-	DataResult<List<CurriculumVitae>> getAll();
+	DataResult<List<CandidateWithCvDto>> getAll();
 	Result add(CurriculumVitae curriculumVitae);
 	Result saveImage(MultipartFile multipartFile, int curriculumVitaeId);
-	DataResult<List<CandidateWithCvDto>> findByCandidateId(int id);
-	//List<CurriculumVitae> findAllByendingDateDesc();
-	//List<CurriculumVitae> findAllByJobExperience_StartingDateDesc();
+	//DataResult<List<CandidateWithCvDto>> findByCandidateId(int id);
+	//List<CurriculumVitae> findBySchool_EndingDateDesc();
+	//List<CurriculumVitae> findByJobExperience_StartingDateDesc();
 	
 }

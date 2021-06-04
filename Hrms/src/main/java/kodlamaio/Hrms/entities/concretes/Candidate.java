@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name="candidates")
 @PrimaryKeyJoinColumn(name="id")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "curriculumVitae"})
 public class Candidate extends User{
 	
 	@NotBlank(message= "İsim alanı boş olamaz!")

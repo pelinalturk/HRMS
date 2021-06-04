@@ -40,10 +40,9 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 	}
 
 	@Override
-	public DataResult<List<CurriculumVitae>> getAll() {
-		
-		return new SuccessDataResult<List<CurriculumVitae>>
-	(this.curriculumVitaeDao.findAll(), "Data Listelendi");
+	public DataResult<List<CandidateWithCvDto>> getAll() {
+		return new SuccessDataResult<List<CandidateWithCvDto>> 
+		(dtoConverterService.dtoConverter(curriculumVitaeDao.findAll(), CandidateWithCvDto.class),"CV getirildi");
 	}
 
 	@Override
@@ -76,22 +75,22 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 		return new SuccessResult("Kayıt Başarılı");
 	}
 
-	@Override
-	public DataResult<List<CandidateWithCvDto>> findByCandidateId(int id) {
-		return new SuccessDataResult<List<CandidateWithCvDto>>
-		(this.dtoConverterService.dtoConverter(this.curriculumVitaeDao.findByCandidateId(id), CandidateWithCvDto.class), "Cv getirildi");
-	}
+//	@Override
+//	public DataResult<List<CandidateWithCvDto>> findByCandidateId(int id) {
+//		return new SuccessDataResult<List<CandidateWithCvDto>>
+//		(this.dtoConverterService.dtoConverter(this.curriculumVitaeDao.findByCandidateId(id), CandidateWithCvDto.class), "Cv getirildi");
+//	}
 	
 	
 
 //	@Override
-//	public List<CurriculumVitae> findAllByJobExperience_StartingDateDesc() {
-//		return this.curriculumVitaeDao.findAllByJobExperience_StartingDateDesc();
+//	public List<CurriculumVitae> findByJobExperience_StartingDateDesc() {
+//		return this.curriculumVitaeDao.findByJobExperience_StartingDateDesc();
 //	}
 //
 //	@Override
-//	public List<CurriculumVitae> findAllByendingDateDesc() {
-//		return this.curriculumVitaeDao.findAllBySchool_EndingDateDesc();
+//	public List<CurriculumVitae> findBySchool_EndingDateDesc() {
+//		return this.curriculumVitaeDao.findBySchool_EndingDateDesc();
 //	}
 
 }
