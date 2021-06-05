@@ -1,8 +1,5 @@
 package kodlamaio.Hrms.entities.concretes;
-
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotBlank;
@@ -40,7 +36,7 @@ public class Technology {
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne(targetEntity = CurriculumVitae.class)
 	@JoinColumn(name = "curriculum_vitae_id")
-	private CurriculumVitae cvId;
+	private CurriculumVitae curriculumVitae;
 	
 	@NotBlank(message = "Açıklama kısmı boş geçilemez.")
 	@Column(name = "description")
@@ -51,6 +47,4 @@ public class Technology {
 	@CreationTimestamp
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date creationDate;
-	
-	
 }

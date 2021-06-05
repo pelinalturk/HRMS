@@ -1,13 +1,11 @@
 package kodlamaio.Hrms.entities.concretes;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,9 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -59,16 +54,15 @@ public class CurriculumVitae {
 	@Column(name = "creation_date")
 	private LocalDate creationDate;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cvId")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "curriculumVitae")
 	private List<School> school;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cvId")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "curriculumVitae")
 	private List<Technology> technology;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cvId")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "curriculumVitae")
 	private List<ForeignLanguage> foreignLanguage;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cvId")
-	private List<JobExperience> jobExperience;
-	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "curriculumVitae")
+	private List<JobExperience> jobExperience;	
 }

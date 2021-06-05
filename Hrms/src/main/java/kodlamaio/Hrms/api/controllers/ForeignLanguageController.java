@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.Hrms.business.abstracts.ForeignLanguageService;
 import kodlamaio.Hrms.core.utilities.result.DataResult;
 import kodlamaio.Hrms.core.utilities.result.Result;
-import kodlamaio.Hrms.entities.concretes.ForeignLanguage;
+import kodlamaio.Hrms.entities.dtos.ForeignLanguageDto;
 
 @RestController
 @RequestMapping("/api/foreignLanguageController")
@@ -29,12 +29,12 @@ public class ForeignLanguageController {
 	}
 	
 	@GetMapping("/getAll")
-	public DataResult<List<ForeignLanguage>> getAll(){
+	public DataResult<List<ForeignLanguageDto>> getAll(){
 		return this.foreignLanguageService.getAll();
 	}
 	
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody ForeignLanguage foreignLanguage) {
-		return this.foreignLanguageService.add(foreignLanguage);
+	public Result add(@Valid @RequestBody ForeignLanguageDto foreignLanguageDto) {
+		return this.foreignLanguageService.add(foreignLanguageDto);
 	}
 }

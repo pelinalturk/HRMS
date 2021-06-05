@@ -18,7 +18,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -51,7 +50,7 @@ public class Candidate extends User{
 	//@JsonIgnore
 	@Column(name ="is_active")
 	//@Getter
-	private boolean is_active;
+	private boolean is_active=true;
 	
 	@JsonIgnore
 	@Column(name= "record_date")

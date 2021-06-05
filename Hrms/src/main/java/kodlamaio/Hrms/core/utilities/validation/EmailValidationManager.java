@@ -1,14 +1,5 @@
 package kodlamaio.Hrms.core.utilities.validation;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import kodlamaio.Hrms.core.utilities.result.Result;
-import kodlamaio.Hrms.core.utilities.result.SuccessResult;
-import kodlamaio.Hrms.dataAccess.abstracts.EmailValidationDao;
-import kodlamaio.Hrms.entities.concretes.User;
-import kodlamaio.Hrms.entities.concretes.VerificationCode;
-
-@Service
 public class EmailValidationManager {
 
 //	//private  EmailValidationDao emailValidationDao;

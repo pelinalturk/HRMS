@@ -1,6 +1,5 @@
 package kodlamaio.Hrms.entities.concretes;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -33,7 +32,6 @@ public class EmployeeConfirm {
 	@Column(name = "id")
 	@JsonIgnore
 	private int id;
-	/**/
 	@Column(name = "employee_id")
 	private int employee;
 	

@@ -48,16 +48,16 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 	@Override
 	public Result add(CurriculumVitae curriculumVitae) {
 		if (curriculumVitae.getForeignLanguage() != null) {
-			curriculumVitae.getForeignLanguage().forEach(lang -> lang.setCvId(curriculumVitae));
+			curriculumVitae.getForeignLanguage().forEach(lang -> lang.setCurriculumVitae(curriculumVitae));
 		}
 		if (curriculumVitae.getSchool() != null) {
-			curriculumVitae.getSchool().forEach(lang -> lang.setCvId(curriculumVitae));
+			curriculumVitae.getSchool().forEach(lang -> lang.setCurriculumVitae(curriculumVitae));
 		}
 		if (curriculumVitae.getTechnology() != null) {
-			curriculumVitae.getTechnology().forEach(lang -> lang.setCvId(curriculumVitae));
+			curriculumVitae.getTechnology().forEach(lang -> lang.setCurriculumVitae(curriculumVitae));
 		}
 		if (curriculumVitae.getJobExperience() != null) {
-			curriculumVitae.getJobExperience().forEach(lang -> lang.setCvId(curriculumVitae));
+			curriculumVitae.getJobExperience().forEach(lang -> lang.setCurriculumVitae(curriculumVitae));
 		}
 				
 		this.curriculumVitaeDao.save(curriculumVitae);

@@ -38,7 +38,7 @@ public class School {
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne(targetEntity = CurriculumVitae.class)
 	@JoinColumn(name = "curriculum_vitae_id")
-    private CurriculumVitae cvId;
+    private CurriculumVitae curriculumVitae;
 	
 	@NotBlank(message = "Lütfen okul ismi giriniz.")
 	@Column(name = "school_name")
@@ -46,7 +46,7 @@ public class School {
 	
 	@ManyToOne(targetEntity = GraduateDegree.class)
 	@JoinColumn(name = "graduate_degree_id",referencedColumnName = "id",nullable = false)
-	private GraduateDegree degreeId;
+	private GraduateDegree degree;
 	
 	@NotBlank(message = "Lütfen bölümünüzü giriniz.")
 	@Column(name = "school_department")

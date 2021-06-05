@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.Hrms.business.abstracts.TechnologyService;
 import kodlamaio.Hrms.core.utilities.result.DataResult;
 import kodlamaio.Hrms.core.utilities.result.Result;
-import kodlamaio.Hrms.entities.concretes.Technology;
+import kodlamaio.Hrms.entities.dtos.TechnologyDto;
 
 @RestController
 @RequestMapping("/api/technologiesController")
@@ -29,12 +29,12 @@ public class TechnologiesController {
 	}
 	
 	@GetMapping("/getAll")
-	public DataResult<List<Technology>> getAll(){
+	public DataResult<List<TechnologyDto>> getAll(){
 		return this.technologyService.getAll();
 	}
 
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody Technology technology) {
-		return this.technologyService.add(technology);
+	public Result add(@Valid @RequestBody TechnologyDto technologyDto) {
+		return this.technologyService.add(technologyDto);
 	}
 }
