@@ -41,7 +41,7 @@ public class EmployerManager implements EmployerService{
 		if(this.userDao.findByEmail(employer.getEmail()) !=null) {
 		return new ErrorResult("Bu mail adresi sistemde kayıtlıdır.");
 		}
-	   if(!employer.getWeb_address().contains(employer.getEmail().substring(employer.getEmail().indexOf("@")+1,employer.getEmail().indexOf("."))))
+	   if(!employer.getWebAddress().contains(employer.getEmail().substring(employer.getEmail().indexOf("@")+1,employer.getEmail().indexOf("."))))
 		{
 		   return new ErrorResult("Girdiğiniz mailin şirket maili olduğuna emin olunuz!");		
 		}

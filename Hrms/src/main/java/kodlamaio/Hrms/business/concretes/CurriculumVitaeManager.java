@@ -18,26 +18,27 @@ import kodlamaio.Hrms.core.utilities.result.SuccessResult;
 import kodlamaio.Hrms.dataAccess.abstracts.CurriculumVitaeDao;
 import kodlamaio.Hrms.entities.concretes.CurriculumVitae;
 import kodlamaio.Hrms.entities.dtos.CandidateWithCvDto;
+import kodlamaio.Hrms.entities.dtos.CurriculumVitaeDto;
 
 @Service
 public class CurriculumVitaeManager implements CurriculumVitaeService{
 	private CurriculumVitaeDao curriculumVitaeDao;
 	private CloudinaryService cloudinaryService;
-	private ModelMapper modelMapper;
+	//private ModelMapper modelMapper;
 	private DtoConverterService dtoConverterService;
 	
 	@Autowired
-	public CurriculumVitaeManager(CurriculumVitaeDao curriculumVitaeDao,CloudinaryService cloudinaryService, ModelMapper modelMapper,DtoConverterService dtoConverterService) {
+	public CurriculumVitaeManager(CurriculumVitaeDao curriculumVitaeDao,CloudinaryService cloudinaryService,DtoConverterService dtoConverterService) {
 		super();
 		this.curriculumVitaeDao = curriculumVitaeDao;
 		this.cloudinaryService=cloudinaryService;
 		this.dtoConverterService = dtoConverterService;
-		this.modelMapper = modelMapper;
+		//this.modelMapper = modelMapper;
 	}
 	
-	private CurriculumVitae dtoConverter(CandidateWithCvDto candidateWithCvDto) {
-		return modelMapper.map(candidateWithCvDto, CurriculumVitae.class);
-	}
+//	private CurriculumVitae dtoConverter(CandidateWithCvDto candidateWithCvDto) {
+//		return modelMapper.map(candidateWithCvDto, CurriculumVitae.class);
+//	}
 
 	@Override
 	public DataResult<List<CandidateWithCvDto>> getAll() {
@@ -75,22 +76,9 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 		return new SuccessResult("Kayıt Başarılı");
 	}
 
-//	@Override
-//	public DataResult<List<CandidateWithCvDto>> findByCandidateId(int id) {
-//		return new SuccessDataResult<List<CandidateWithCvDto>>
-//		(this.dtoConverterService.dtoConverter(this.curriculumVitaeDao.findByCandidateId(id), CandidateWithCvDto.class), "Cv getirildi");
-//	}
-	
-	
-
-//	@Override
-//	public List<CurriculumVitae> findByJobExperience_StartingDateDesc() {
-//		return this.curriculumVitaeDao.findByJobExperience_StartingDateDesc();
-//	}
-//
-//	@Override
-//	public List<CurriculumVitae> findBySchool_EndingDateDesc() {
-//		return this.curriculumVitaeDao.findBySchool_EndingDateDesc();
-//	}
-
+	@Override
+	public DataResult<List<CurriculumVitaeDto>> getCv() {
+		return new SuccessDataResult<List<CurriculumVitaeDto>>
+		(this.dtoConverterService.dtoConverter(this.curriculumVitaeDao.findAll(), CurriculumVitaeDto.class),"Data getirildi");
+	}
 }

@@ -15,8 +15,8 @@ import lombok.NoArgsConstructor;
 public class CandidateWithCvDto {
 	private int id;
 	private int candidateId;
-	private String githubLink;
-	private String linkedinLink;
+	private String githublink;
+	private String linkedinlink;
 	private String photo;
 	private String description;
 	private List<School> school;

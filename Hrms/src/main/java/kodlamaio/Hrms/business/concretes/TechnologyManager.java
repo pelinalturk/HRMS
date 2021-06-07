@@ -20,20 +20,20 @@ import kodlamaio.Hrms.entities.dtos.TechnologyDto;
 public class TechnologyManager implements TechnologyService{
 
 	private TechnologyDao technologyDao;
-	private ModelMapper modelMapper;
+	//private ModelMapper modelMapper;
 	private DtoConverterService dtoConverterService;
 	
 	@Autowired
-	public TechnologyManager(TechnologyDao technologyDao,  ModelMapper modelMapper, DtoConverterService dtoConverterService) {
+	public TechnologyManager(TechnologyDao technologyDao, DtoConverterService dtoConverterService) {
 		super();
 		this.technologyDao = technologyDao;
 		this.dtoConverterService=dtoConverterService;
-		this.modelMapper=modelMapper;
+		//this.modelMapper=modelMapper;
 	}
 	
-	private Technology dtoConverter(TechnologyDto technologyDto) {
-		return modelMapper.map(technologyDto,Technology.class);
-	}
+//	private Technology dtoConverter(TechnologyDto technologyDto) {
+//		return modelMapper.map(technologyDto,Technology.class);
+//	}
 	@Override
 	public DataResult<List<TechnologyDto>> getAll() {
 		return  new SuccessDataResult<List<TechnologyDto>>
@@ -42,7 +42,7 @@ public class TechnologyManager implements TechnologyService{
 
 	@Override
 	public Result add(TechnologyDto technologyDto) {
-		this.technologyDao.save(dtoConverter(technologyDto));
+		this.technologyDao.save((Technology) dtoConverterService.dtoClassConverter(technologyDto, Technology.class));
 		return new SuccessResult("Data Eklendi");
 	}
 

@@ -21,21 +21,21 @@ import kodlamaio.Hrms.entities.dtos.JobAdvertisementDto;
 public class JobAdvertisementManager implements JobAdvertisementService{
 
 	private JobAdvertisementDao JobAdvertisementDao;
-	private ModelMapper modelMapper;
+	//private ModelMapper modelMapper;
 	private DtoConverterService dtoConverterService;
 	
 	@Autowired
-	public JobAdvertisementManager(JobAdvertisementDao jobAdvertisementDao, DtoConverterService dtoConverterService,ModelMapper modelMapper) {
+	public JobAdvertisementManager(JobAdvertisementDao jobAdvertisementDao, DtoConverterService dtoConverterService) {
 		super();
 		JobAdvertisementDao = jobAdvertisementDao;
-		this.modelMapper = modelMapper;
+		//this.modelMapper = modelMapper;
 		this.dtoConverterService=dtoConverterService;
 	}
 
-	private JobAdvertisement dtoConverter(JobAdvertisementAddDto jobAdvertisementAddDto){
-		return modelMapper.map(jobAdvertisementAddDto, JobAdvertisement.class);
-		
-	}
+//	private JobAdvertisement dtoConverter(JobAdvertisementAddDto jobAdvertisementAddDto){
+//		return modelMapper.map(jobAdvertisementAddDto, JobAdvertisement.class);
+//		
+//	}
 //	@Override
 //	public DataResult<List<JobAdvertisementDto>> getAll() {
 //		
@@ -45,7 +45,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	@Override
 	public Result add(JobAdvertisementAddDto jobAdvertisementAddDto) {
 		
-		 this.JobAdvertisementDao.save(dtoConverter(jobAdvertisementAddDto));
+		 this.JobAdvertisementDao.save((JobAdvertisement) dtoConverterService.dtoClassConverter(jobAdvertisementAddDto, JobAdvertisement.class) );
 		 return new SuccessResult("Eklendi");
 	}
 

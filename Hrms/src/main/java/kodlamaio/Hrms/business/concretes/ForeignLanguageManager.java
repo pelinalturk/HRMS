@@ -20,19 +20,20 @@ import kodlamaio.Hrms.entities.dtos.ForeignLanguageDto;
 public class ForeignLanguageManager implements ForeignLanguageService{
 
 	private ForeignLanguageDao foreignLanguageDao;
-	private ModelMapper modelMapper;
+	//private ModelMapper modelMapper;
 	private DtoConverterService dtoConverterService;
 	@Autowired
-	public ForeignLanguageManager(ForeignLanguageDao foreignLanguageDao, ModelMapper modelMapper, DtoConverterService dtoConverterService) {
+	public ForeignLanguageManager(ForeignLanguageDao foreignLanguageDao, DtoConverterService dtoConverterService) {
 		super();
 		this.foreignLanguageDao = foreignLanguageDao;
 		this.dtoConverterService=dtoConverterService;
-		this.modelMapper=modelMapper;
+		//this.modelMapper=modelMapper;
 	}
 	
-	private ForeignLanguage dtoConverter(ForeignLanguageDto foreignLanguageDto) {
-		return modelMapper.map(foreignLanguageDto, ForeignLanguage.class);
-	}
+//	private ForeignLanguage dtoConverter(ForeignLanguageDto foreignLanguageDto) {
+//		return modelMapper.map(foreignLanguageDto, ForeignLanguage.class);
+//	}
+	
 	@Override
 	public DataResult<List<ForeignLanguageDto>> getAll() {
 		return new SuccessDataResult<List<ForeignLanguageDto>>
@@ -41,7 +42,7 @@ public class ForeignLanguageManager implements ForeignLanguageService{
 
 	@Override
 	public Result add(ForeignLanguageDto foreignLanguageDto) {
-		this.foreignLanguageDao.save(dtoConverter(foreignLanguageDto));
+		this.foreignLanguageDao.save((ForeignLanguage) dtoConverterService.dtoClassConverter(foreignLanguageDto, ForeignLanguage.class));
 		return new SuccessResult("Data eklendi.");
 	}
 

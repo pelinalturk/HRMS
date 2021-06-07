@@ -22,18 +22,18 @@ public class JobExperienceManager implements JobExperienceService{
 
 	private JobExperienceDao jobExperienceDao;
 	private DtoConverterService dtoConverterService;
-	private ModelMapper modelMapper;
+	//private ModelMapper modelMapper;
 	@Autowired
-	public JobExperienceManager(JobExperienceDao jobExperienceDao, DtoConverterService dtoConverterService,  ModelMapper modelMapper) {
+	public JobExperienceManager(JobExperienceDao jobExperienceDao, DtoConverterService dtoConverterService) {
 		super();
 		this.jobExperienceDao = jobExperienceDao;
 		this.dtoConverterService=dtoConverterService;
-		this.modelMapper=modelMapper;
+		//this.modelMapper=modelMapper;
 	}
 	
-	private JobExperience dtoConverter(JobExperienceAddDto experienceAddDto) {
-		return modelMapper.map(experienceAddDto, JobExperience.class);
-	}
+//	private JobExperience dtoConverter(JobExperienceAddDto experienceAddDto) {
+//		return modelMapper.map(experienceAddDto, JobExperience.class);
+//	}
 
 	@Override
 	public DataResult<List<JobExperienceGetDto>> getAll() {
@@ -43,7 +43,7 @@ public class JobExperienceManager implements JobExperienceService{
 
 	@Override
 	public Result add(JobExperienceAddDto jobExperienceAddDto) {
-		this.jobExperienceDao.save(dtoConverter(jobExperienceAddDto));
+		this.jobExperienceDao.save((JobExperience) dtoConverterService.dtoClassConverter(jobExperienceAddDto, JobExperience.class));
 		return new SuccessResult("Data Eklendi");
 	}
 

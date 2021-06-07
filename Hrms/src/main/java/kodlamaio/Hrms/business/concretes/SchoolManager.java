@@ -21,20 +21,20 @@ import kodlamaio.Hrms.entities.dtos.SchoolGetDto;
 public class SchoolManager implements SchoolService{
 
 	private SchoolDao schoolDao;
-	private ModelMapper modelMapper;
+	//private ModelMapper modelMapper;
 	private DtoConverterService dtoConverterService;
 	
 	@Autowired
-	public SchoolManager(SchoolDao schoolDao, ModelMapper modelMapper, DtoConverterService dtoConverterService) {
+	public SchoolManager(SchoolDao schoolDao, DtoConverterService dtoConverterService) {
 		super();
 		this.schoolDao = schoolDao;
 		this.dtoConverterService=dtoConverterService;
-		this.modelMapper=modelMapper;
+		//this.modelMapper=modelMapper;
 	}
 	
-	private School dtoConverter(SchoolAddDto schoolAddDto) {
-		return modelMapper.map(schoolAddDto, School.class);
-	}
+//	private School dtoConverter(SchoolAddDto schoolAddDto) {
+//		return modelMapper.map(schoolAddDto, School.class);
+//	}
 
 	@Override
 	public DataResult<List<SchoolGetDto>> getAll() {
@@ -48,7 +48,7 @@ public class SchoolManager implements SchoolService{
 		if (schoolAddDto.getEndingDate() == null || schoolAddDto.getEndingDate().toString()=="String") {
 			schoolAddDto.setEndingDate(null);
 		}
-		this.schoolDao.save(dtoConverter(schoolAddDto));
+		this.schoolDao.save((School) dtoConverterService.dtoClassConverter(schoolAddDto, School.class));
 		return new SuccessResult("Data eklendi.");
 	}
 

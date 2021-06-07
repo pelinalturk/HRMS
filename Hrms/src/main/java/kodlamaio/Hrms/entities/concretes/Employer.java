@@ -11,6 +11,8 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,6 +26,7 @@ import lombok.NoArgsConstructor;
 @Table(name="employers")
 @PrimaryKeyJoinColumn(name="id")
 //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "job_advertisements"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "employee_confirms"})
 public class Employer extends User{
 	
 	@NotBlank(message ="Şirket ismi alanı boş olamaz!")
@@ -32,16 +35,16 @@ public class Employer extends User{
 	
 	@NotBlank(message = "Web adres alanı boş olamaz!")
 	@Column(name="web_address")
-	private String web_address;
+	private String webAddress;
 	
 	@NotBlank(message="Telefon numarası alanı boş olamaz!")
 	@Column(name="phone_number")
-	private String phone_number;
+	private String phoneNumber;
 	
 	@JsonIgnore
 	//@Column(name ="is_active",columnDefinition = "true")
 	@Column(name ="is_active")
-	private boolean is_active = true;
+	private boolean isActive;
 	
 	@JsonIgnore
 	@Column(name= "record_date")

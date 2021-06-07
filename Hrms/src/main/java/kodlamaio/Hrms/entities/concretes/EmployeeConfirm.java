@@ -37,7 +37,7 @@ public class EmployeeConfirm {
 	
 	@ManyToOne(targetEntity = Employer.class, fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "employer_id", referencedColumnName = "id", nullable = false)
-	private Employer employerId;
+	private Employer employer;
 	
 	@Column(name = "is_confirmed")
 	private boolean isConfirmed;
