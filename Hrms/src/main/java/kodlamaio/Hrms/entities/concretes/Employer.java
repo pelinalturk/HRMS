@@ -25,7 +25,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name="employers")
 @PrimaryKeyJoinColumn(name="id")
-//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "job_advertisements"})
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "employee_confirms"})
 public class Employer extends User{
 	
@@ -45,6 +44,9 @@ public class Employer extends User{
 	//@Column(name ="is_active",columnDefinition = "true")
 	@Column(name ="is_active")
 	private boolean isActive;
+	
+	@Column(name ="is_confirm")
+	private boolean isConfirm;
 	
 	@JsonIgnore
 	@Column(name= "record_date")

@@ -1,8 +1,6 @@
 package kodlamaio.Hrms.business.concretes;
 
 import java.util.List;
-
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,32 +14,21 @@ import kodlamaio.Hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.Hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.Hrms.entities.dtos.JobAdvertisementAddDto;
 import kodlamaio.Hrms.entities.dtos.JobAdvertisementDto;
+import net.bytebuddy.asm.Advice.This;
 
 @Service
 public class JobAdvertisementManager implements JobAdvertisementService{
 
 	private JobAdvertisementDao JobAdvertisementDao;
-	//private ModelMapper modelMapper;
 	private DtoConverterService dtoConverterService;
 	
 	@Autowired
 	public JobAdvertisementManager(JobAdvertisementDao jobAdvertisementDao, DtoConverterService dtoConverterService) {
 		super();
 		JobAdvertisementDao = jobAdvertisementDao;
-		//this.modelMapper = modelMapper;
 		this.dtoConverterService=dtoConverterService;
 	}
 
-//	private JobAdvertisement dtoConverter(JobAdvertisementAddDto jobAdvertisementAddDto){
-//		return modelMapper.map(jobAdvertisementAddDto, JobAdvertisement.class);
-//		
-//	}
-//	@Override
-//	public DataResult<List<JobAdvertisementDto>> getAll() {
-//		
-//		return new SuccessDataResult<List<JobAdvertisement>>(this.JobAdvertisementDao.findAll(),"Data Listelendi");
-//	}
-	
 	@Override
 	public Result add(JobAdvertisementAddDto jobAdvertisementAddDto) {
 		
@@ -51,9 +38,9 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 
 
 	@Override
-	public DataResult<List<JobAdvertisementDto>> findAllByIsActiveTrue() {
+	public DataResult<List<JobAdvertisementDto>> findAllByIsActive(boolean active) {
 		return new SuccessDataResult<List<JobAdvertisementDto>>
-		(dtoConverterService.dtoConverter(JobAdvertisementDao.findByIsActiveTrue(),JobAdvertisementDto.class));
+		(dtoConverterService.dtoConverter(JobAdvertisementDao.findByIsActive(active),JobAdvertisementDto.class));
 	}
 
 
@@ -74,6 +61,24 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	public Result update(JobAdvertisement jobAdvertisement) {
 		this.JobAdvertisementDao.save(jobAdvertisement);
 		return new SuccessResult("güncellendi");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisementDto>> getAll() {
+		return new SuccessDataResult<List<JobAdvertisementDto>>
+		(this.dtoConverterService.dtoConverter(this.JobAdvertisementDao.findAll(),JobAdvertisementDto.class),"Data Listelendi");
+	}
+
+	@Override
+	public JobAdvertisement getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisementDto>> findByIsConfirm(boolean confirm) {
+		return new SuccessDataResult<List<JobAdvertisementDto>>
+		(dtoConverterService.dtoConverter(JobAdvertisementDao.findByIsConfirm(confirm),JobAdvertisementDto.class));
 	}
 	
 }

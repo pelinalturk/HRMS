@@ -23,4 +23,7 @@ public class JobAdvertisementAddDto {
 	private String jobdetail;
 	private LocalDate createdDate;
 	private LocalDate applicationDeadline;
+	private int workingHourId;
+	private int mannerOfWorkId;
+	
 }

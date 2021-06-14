@@ -10,11 +10,8 @@ import kodlamaio.Hrms.business.abstracts.VerificationCodeService;
 import kodlamaio.Hrms.core.utilities.result.ErrorResult;
 import kodlamaio.Hrms.core.utilities.result.Result;
 import kodlamaio.Hrms.core.utilities.result.SuccessResult;
-import kodlamaio.Hrms.core.utilities.validation.EmailValidationManager;
-import kodlamaio.Hrms.core.utilities.validation.EmailValidationService;
 import kodlamaio.Hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.Hrms.dataAccess.abstracts.UserDao;
-import kodlamaio.Hrms.dataAccess.abstracts.VerificationCodeDao;
 import kodlamaio.Hrms.entities.concretes.Candidate;
 
 @Service

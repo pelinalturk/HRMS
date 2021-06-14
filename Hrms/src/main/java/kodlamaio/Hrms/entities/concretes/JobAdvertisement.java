@@ -16,6 +16,7 @@ import javax.persistence.Temporal;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +27,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "job_advertisements")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "job_advertisements_confirm_employee"})
 public class JobAdvertisement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,8 +65,20 @@ public class JobAdvertisement {
 	private Date createdDate;
 	
 	@Column(name = "is_active")
-	private boolean isActive;
+	private boolean isActive =true;
+	
+	@Column(name = "is_confirm")
+	private boolean isConfirm =false;
 	
 	@Column(name = "application_deadline")
 	private LocalDate applicationDeadline;
+	
+	@ManyToOne
+	@JoinColumn(name ="working_hours_id") 
+	private WorkingHour workingHour;
+	
+	@ManyToOne
+	@JoinColumn(name ="manner_of_work_id") 
+	private MannerOfWork mannerOfWork;
+	
 }

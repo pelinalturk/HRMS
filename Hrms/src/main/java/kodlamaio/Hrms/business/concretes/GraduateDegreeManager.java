@@ -33,9 +33,9 @@ public class GraduateDegreeManager implements GraduateDegreeService{
 
 	@Override
 	public Result add(GraduateDegree graduateDegree) {
-//		if (graduateDegreeDao.existByDescription(graduateDegree.getDescription())) {
-//			return  new ErrorResult("Daha önce eklendi");
-//		}
+		if (graduateDegreeDao.existsByDescription(graduateDegree.getDescription())) {
+			return  new ErrorResult("Daha önce eklendi");
+		}
 		this.graduateDegreeDao.save(graduateDegree);
 		return  new SuccessResult("Eklendi");
 	}

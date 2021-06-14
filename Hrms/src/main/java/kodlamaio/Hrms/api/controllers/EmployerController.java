@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.Hrms.business.abstracts.EmployerService;
+import kodlamaio.Hrms.core.utilities.result.DataResult;
 import kodlamaio.Hrms.core.utilities.result.Result;
 import kodlamaio.Hrms.entities.concretes.Employer;
 
@@ -30,8 +31,13 @@ public class EmployerController {
 	}
 	
 	@GetMapping("/getall")
-	public List<Employer> getAll(){
+	public DataResult<List<Employer>> getAll(){
 		return this.employerService.getall();
+	}
+	
+	@GetMapping("/getByConfirm")
+	public DataResult<List<Employer>> findByIsConfirm(boolean confirm) {
+		return this.employerService.findByIsConfirm(confirm);
 	}
 	@PostMapping("/add")
 	public Result add(@Valid @RequestBody Employer employer) {

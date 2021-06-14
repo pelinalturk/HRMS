@@ -4,12 +4,11 @@ import java.util.List;
 
 import kodlamaio.Hrms.core.utilities.result.DataResult;
 import kodlamaio.Hrms.core.utilities.result.Result;
-import kodlamaio.Hrms.entities.concretes.Employee;
 import kodlamaio.Hrms.entities.concretes.EmployeeConfirm;
 import kodlamaio.Hrms.entities.concretes.Employer;
 import kodlamaio.Hrms.entities.dtos.EmployeeConfirmDto;
 
 public interface EmployeeConfirmService {
-	Result add(Employer employer);
+	Result add(EmployeeConfirm employeeConfirm);
 	DataResult<List<EmployeeConfirmDto>> findByIsActive(boolean isActive);
 }

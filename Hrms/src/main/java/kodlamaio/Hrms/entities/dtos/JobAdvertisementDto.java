@@ -10,8 +10,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JobAdvertisementDto {
+	private int id;
 	private String employerCompanyName;
 	private String jobPositionTitle;
 	private int countOfOpenPosition;
 	private LocalDate applicationDeadline;
+	private int minWage;
+	private int maxWage;
+	private String cityCity;
+	private String jobDetail;
+	private String workingHourWorkingHour;
+	private String mannerOfWorkMannerOfWork;
 }
