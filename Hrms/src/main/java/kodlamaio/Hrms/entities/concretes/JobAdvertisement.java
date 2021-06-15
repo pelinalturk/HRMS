@@ -81,4 +81,7 @@ public class JobAdvertisement {
 	@JoinColumn(name ="manner_of_work_id") 
 	private MannerOfWork mannerOfWork;
 	
+	@ManyToOne
+	@JoinColumn(name ="position_level_id") 
+	private PositionLevel positionLevel;
 }

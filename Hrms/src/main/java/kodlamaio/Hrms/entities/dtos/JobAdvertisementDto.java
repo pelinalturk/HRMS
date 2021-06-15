@@ -21,4 +21,5 @@ public class JobAdvertisementDto {
 	private String jobDetail;
 	private String workingHourWorkingHour;
 	private String mannerOfWorkMannerOfWork;
+	private String positionLevelPositionLevel;
 }

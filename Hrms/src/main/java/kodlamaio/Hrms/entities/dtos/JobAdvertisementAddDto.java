@@ -25,5 +25,5 @@ public class JobAdvertisementAddDto {
 	private LocalDate applicationDeadline;
 	private int workingHourId;
 	private int mannerOfWorkId;
-	
+	private int positionLevelId;
 }
