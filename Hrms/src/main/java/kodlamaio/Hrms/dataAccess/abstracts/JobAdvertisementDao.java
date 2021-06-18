@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import kodlamaio.Hrms.core.utilities.result.DataResult;
 import kodlamaio.Hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.Hrms.entities.dtos.JobAdvertisementDto;
 
@@ -19,4 +20,6 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	JobAdvertisement getById(int id);
 	
 	List<JobAdvertisement>findByIsConfirm(boolean confirm);
+	
+	List<JobAdvertisement> getByEmployer_Id(int id);
 }

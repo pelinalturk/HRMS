@@ -19,19 +19,13 @@ import kodlamaio.Hrms.entities.dtos.ForeignLanguageDto;
 public class ForeignLanguageManager implements ForeignLanguageService{
 
 	private ForeignLanguageDao foreignLanguageDao;
-	//private ModelMapper modelMapper;
 	private DtoConverterService dtoConverterService;
 	@Autowired
 	public ForeignLanguageManager(ForeignLanguageDao foreignLanguageDao, DtoConverterService dtoConverterService) {
 		super();
 		this.foreignLanguageDao = foreignLanguageDao;
 		this.dtoConverterService=dtoConverterService;
-		//this.modelMapper=modelMapper;
 	}
-	
-//	private ForeignLanguage dtoConverter(ForeignLanguageDto foreignLanguageDto) {
-//		return modelMapper.map(foreignLanguageDto, ForeignLanguage.class);
-//	}
 	
 	@Override
 	public DataResult<List<ForeignLanguageDto>> getAll() {
@@ -46,6 +40,23 @@ public class ForeignLanguageManager implements ForeignLanguageService{
 		}
 		this.foreignLanguageDao.save((ForeignLanguage) dtoConverterService.dtoClassConverter(foreignLanguageDto, ForeignLanguage.class));
 		return new SuccessResult("Data eklendi.");
+	}
+
+	@Override
+	public Result update(String languageLevel, int id) {
+		ForeignLanguage foreignLanguage = new ForeignLanguage();
+		foreignLanguage= this.foreignLanguageDao.findById(id).get();
+		foreignLanguage.setLanguage(foreignLanguage.getLanguage());
+		foreignLanguage.setCurriculumVitae(foreignLanguage.getCurriculumVitae());
+		foreignLanguage.setLanguageLevel(languageLevel);
+		this.foreignLanguageDao.save(foreignLanguage);
+		return new SuccessResult("Data Güncellendi.");
+	}
+
+	@Override
+	public Result delete(int id) {
+		this.foreignLanguageDao.deleteById(id);
+		return new SuccessResult("Data Silindi");
 	}
 
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.Hrms.business.abstracts.JobAdvertisementService;
@@ -44,7 +45,7 @@ public class JobAdvertisementController {
 	}
 	
 	@GetMapping("/getByIsActive")
-	public DataResult<List<JobAdvertisementDto>> findAllByIsActive(boolean active)
+	public DataResult<List<JobAdvertisementDto>> findAllByIsActive(@RequestParam boolean active)
 	{
 		return 
 				this.jobAdvertisementService.findAllByIsActive(active);
@@ -56,12 +57,20 @@ public class JobAdvertisementController {
 	}
 	
 	@GetMapping("/getByEmployer")
-	public DataResult<List<JobAdvertisementDto>> getByEmployer_CompanyName(String companyName){
+	public DataResult<List<JobAdvertisementDto>> getByEmployer_CompanyName(@RequestParam String companyName){
 		return this.jobAdvertisementService.getByEmployer_CompanyName(companyName);
 	}
+	@GetMapping("/getByEmployerId")
+	public List<JobAdvertisement> getByEmployerId(@RequestParam int id) {
+		return this.jobAdvertisementService.getByEmployerId(id);
+	}
+//	@GetMapping("/getByEmployer")
+//	public List<JobAdvertisement> getByEmployer(String companyName) {
+//		return this.jobAdvertisementService.getByEmployer(companyName);
+//	}
 	
 	@GetMapping("/getByConfirm")
-	public DataResult<List<JobAdvertisementDto>> findByIsConfirm(boolean confirm) {
+	public DataResult<List<JobAdvertisementDto>> findByIsConfirm(@RequestParam boolean confirm) {
 		return this.jobAdvertisementService.findByIsConfirm(confirm);
 	}
 }

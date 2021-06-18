@@ -22,7 +22,6 @@ import kodlamaio.Hrms.entities.dtos.CurriculumVitaeDto;
 public class CurriculumVitaeManager implements CurriculumVitaeService{
 	private CurriculumVitaeDao curriculumVitaeDao;
 	private CloudinaryService cloudinaryService;
-	//private ModelMapper modelMapper;
 	private DtoConverterService dtoConverterService;
 	
 	@Autowired
@@ -31,12 +30,8 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 		this.curriculumVitaeDao = curriculumVitaeDao;
 		this.cloudinaryService=cloudinaryService;
 		this.dtoConverterService = dtoConverterService;
-		//this.modelMapper = modelMapper;
 	}
 	
-//	private CurriculumVitae dtoConverter(CandidateWithCvDto candidateWithCvDto) {
-//		return modelMapper.map(candidateWithCvDto, CurriculumVitae.class);
-//	}
 
 	@Override
 	public DataResult<List<CandidateWithCvDto>> getAll() {
@@ -46,26 +41,12 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 
 	@Override
 	public Result add(CurriculumVitae curriculumVitae) {
-		if (curriculumVitae.getForeignLanguage() != null) {
-			curriculumVitae.getForeignLanguage().forEach(lang -> lang.setCurriculumVitae(curriculumVitae));
-		}
-		if (curriculumVitae.getSchool() != null) {
-			curriculumVitae.getSchool().forEach(lang -> lang.setCurriculumVitae(curriculumVitae));
-		}
-		if (curriculumVitae.getTechnology() != null) {
-			curriculumVitae.getTechnology().forEach(lang -> lang.setCurriculumVitae(curriculumVitae));
-		}
-		if (curriculumVitae.getJobExperience() != null) {
-			curriculumVitae.getJobExperience().forEach(lang -> lang.setCurriculumVitae(curriculumVitae));
-		}
-				
 		this.curriculumVitaeDao.save(curriculumVitae);
 		return new SuccessResult("Data eklendi.");
 	}
 
 	@Override
 	public Result saveImage(MultipartFile multipartFile, int curriculumVitaeId) {
-		
 		Map<String, String> uploader = (Map<String, String>) cloudinaryService.save(multipartFile).getData(); 
 		String image= uploader.get("url");
 		CurriculumVitae curriculumVitae = curriculumVitaeDao.getOne(curriculumVitaeId);

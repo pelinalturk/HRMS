@@ -51,4 +51,10 @@ public class JobExperienceManager implements JobExperienceService{
 		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.findAllByCurriculumVitaeIdOrderByEndingDateDesc(id), "İş tecrübeleri bitiş tarihlerine göre sıralandı.");
 	}
 
+	@Override
+	public Result delete(int id) {
+		this.jobExperienceDao.deleteById(id);
+		return new SuccessResult("Data Silindi");
+	}
+
 }

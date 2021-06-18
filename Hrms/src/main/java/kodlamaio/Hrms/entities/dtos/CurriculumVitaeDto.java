@@ -17,4 +17,8 @@ public class CurriculumVitaeDto {
 	private String linkedinlink;
 	private String photo;
 	private String description;
+	private String candidateFirstName;
+	private String candidateLastName;
+	private String candidateEmail;
+	private String candidateBirthYear;
 }

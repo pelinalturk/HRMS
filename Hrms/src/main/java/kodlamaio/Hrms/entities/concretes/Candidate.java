@@ -32,11 +32,11 @@ public class Candidate extends User{
 	
 	@NotBlank(message= "İsim alanı boş olamaz!")
 	@Column(name="first_name")
-	private String first_name;
+	private String firstName;
 	
 	@NotBlank(message= "Soyisim alanı boş olamaz!")
 	@Column(name="last_name")
-	private String last_name;
+	private String lastName;
 	
 	@Size(min = 11, max = 11, message = "T.C. Kimlik numarası alanı 11 karakterden az olamaz!")
 	@NotBlank(message= "TC kimlik numarası alanı boş olamaz!")
@@ -45,17 +45,17 @@ public class Candidate extends User{
 	
 	@NotNull(message= "Doğum yılı alanı boş olamaz!")
 	@Column(name="birth_year")
-	private LocalDate birth_year;
+	private LocalDate birthYear;
 	
 	//@JsonIgnore
 	@Column(name ="is_active")
 	//@Getter
-	private boolean is_active=true;
+	private boolean isActive=true;
 	
 	@JsonIgnore
 	@Column(name= "record_date")
 	@CreationTimestamp
 	@Temporal(javax.persistence.TemporalType.DATE)
-	private Date record_time;
+	private Date recordTime;
 	
 }

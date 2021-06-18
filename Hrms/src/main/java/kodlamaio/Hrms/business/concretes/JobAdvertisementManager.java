@@ -3,6 +3,7 @@ package kodlamaio.Hrms.business.concretes;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kodlamaio.Hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.Hrms.core.utilities.dtoConverter.DtoConverterService;
@@ -76,9 +77,16 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	}
 
 	@Override
-	public DataResult<List<JobAdvertisementDto>> findByIsConfirm(boolean confirm) {
+	public DataResult<List<JobAdvertisementDto>> findByIsConfirm( boolean confirm) {
 		return new SuccessDataResult<List<JobAdvertisementDto>>
 		(dtoConverterService.dtoConverter(JobAdvertisementDao.findByIsConfirm(confirm),JobAdvertisementDto.class));
 	}
+
+	@Override
+	public List<JobAdvertisement> getByEmployerId(int id) {
+		return this.JobAdvertisementDao.getByEmployer_Id(id);
+	}
+
+
 	
 }

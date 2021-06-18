@@ -33,6 +33,9 @@ public class User {
 	@Column(name="email")
 	private String email;
 	
+	@Column(name = "photo")
+	private String photo;
+	
 	@NotBlank(message = "Şifre alanı boş bırakılamaz!")
 	@Column(name="password")
 	private String password;

@@ -15,8 +15,10 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisementDto>> findAllByIsActive(boolean active);
 	DataResult<List<JobAdvertisementDto>> findAllByIsActiveTrueOrderByCreatedDateAsc();
 	DataResult<List<JobAdvertisementDto>>getByEmployer_CompanyName(String companyName);
+	//List<JobAdvertisement> getByEmployer(String companyName);
 	Result update(JobAdvertisement jobAdvertisement);
 	//Result updateConfirm(boolean confirm, int id);
 	 JobAdvertisement getById(int id);
 	 DataResult<List<JobAdvertisementDto>>findByIsConfirm(boolean confirm);
+	 List<JobAdvertisement> getByEmployerId(int id);
 }

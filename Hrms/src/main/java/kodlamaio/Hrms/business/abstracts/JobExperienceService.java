@@ -12,4 +12,5 @@ public interface JobExperienceService {
 	DataResult<List<JobExperienceGetDto>> getAll();
 	Result add(JobExperienceAddDto jobExperienceAddDto);
 	DataResult<List<JobExperience>>findAllByCurriculumVitaeIdOrderByEndingDateDesc(int id);
+	Result delete(int id);
 }

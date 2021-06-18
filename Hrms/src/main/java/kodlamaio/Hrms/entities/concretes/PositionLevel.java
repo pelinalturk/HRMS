@@ -25,4 +25,5 @@ public class PositionLevel {
 	
 	@Column(name = "position_level")
 	private String positionLevel;
+	
 }

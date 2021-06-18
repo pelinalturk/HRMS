@@ -61,4 +61,8 @@ public class EmployerManager implements EmployerService{
 	public DataResult<List<Employer>> findByIsConfirm(boolean confirm) {
 		return new SuccessDataResult<List<Employer>>(this.employerDao.findByIsConfirm(confirm), "Data Listelendi");
 	}
+	@Override
+	public Employer getById(int id) {
+		return this.employerDao.findById(id).get();
+	}
 }

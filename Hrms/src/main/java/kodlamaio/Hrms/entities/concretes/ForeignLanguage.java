@@ -52,5 +52,5 @@ public class ForeignLanguage {
 	@Size(min = 1, max = 5, message = "1-5 Arası seviye giriniz!")
 	@NotBlank(message = "Lütfen yabancı dil seviyenizi seçiniz.")
 	@Column(name = "level")
-	private char languageLevel;	
+	private String languageLevel;	
 }
