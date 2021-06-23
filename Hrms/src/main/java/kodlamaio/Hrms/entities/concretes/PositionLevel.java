@@ -26,4 +26,6 @@ public class PositionLevel {
 	@Column(name = "position_level")
 	private String positionLevel;
 	
+	@Column(name = "photo")
+	private String photo;
 }

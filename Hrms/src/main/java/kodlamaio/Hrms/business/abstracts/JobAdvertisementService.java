@@ -21,4 +21,5 @@ public interface JobAdvertisementService {
 	 JobAdvertisement getById(int id);
 	 DataResult<List<JobAdvertisementDto>>findByIsConfirm(boolean confirm);
 	 List<JobAdvertisement> getByEmployerId(int id);
+	 DataResult<List<JobAdvertisement>> findByIsActiveTrueAndIsConfirmTrue();
 }

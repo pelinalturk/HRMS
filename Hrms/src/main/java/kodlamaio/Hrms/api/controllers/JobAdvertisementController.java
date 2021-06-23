@@ -64,10 +64,10 @@ public class JobAdvertisementController {
 	public List<JobAdvertisement> getByEmployerId(@RequestParam int id) {
 		return this.jobAdvertisementService.getByEmployerId(id);
 	}
-//	@GetMapping("/getByEmployer")
-//	public List<JobAdvertisement> getByEmployer(String companyName) {
-//		return this.jobAdvertisementService.getByEmployer(companyName);
-//	}
+	@GetMapping("/getByActiveAndConfirm")
+	public DataResult<List<JobAdvertisement>> findByIsActiveTrueAndIsConfirmTrue() {
+		return this.jobAdvertisementService.findByIsActiveTrueAndIsConfirmTrue();
+	}
 	
 	@GetMapping("/getByConfirm")
 	public DataResult<List<JobAdvertisementDto>> findByIsConfirm(@RequestParam boolean confirm) {

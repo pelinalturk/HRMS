@@ -87,6 +87,9 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return this.JobAdvertisementDao.getByEmployer_Id(id);
 	}
 
-
-	
+	@Override
+	public DataResult<List<JobAdvertisement>> findByIsActiveTrueAndIsConfirmTrue() {
+		return new SuccessDataResult<List<JobAdvertisement>>
+		(this.JobAdvertisementDao.findByIsActiveTrueAndIsConfirmTrue(), "Aktif Ve Onaylı İş İlanları Listelendi.");
+	}
 }

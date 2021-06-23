@@ -19,8 +19,8 @@ import lombok.NoArgsConstructor;
 public class JobAdvertisementConfirmEmployeeDto {
 	@JsonIgnore
 	private int id;
-	private int employeeId;
-	private boolean isConfirmed;
+	private int employee;
+	private int jobAdvertisementId;
 	//jobAdvertisement
 	
 	@JsonIgnore

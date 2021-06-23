@@ -43,7 +43,7 @@ public class ForeignLanguageManager implements ForeignLanguageService{
 	}
 
 	@Override
-	public Result update(String languageLevel, int id) {
+	public Result update(int languageLevel, int id) {
 		ForeignLanguage foreignLanguage = new ForeignLanguage();
 		foreignLanguage= this.foreignLanguageDao.findById(id).get();
 		foreignLanguage.setLanguage(foreignLanguage.getLanguage());
@@ -57,6 +57,12 @@ public class ForeignLanguageManager implements ForeignLanguageService{
 	public Result delete(int id) {
 		this.foreignLanguageDao.deleteById(id);
 		return new SuccessResult("Data Silindi");
+	}
+
+	@Override
+	public DataResult<ForeignLanguage> getByLanguage(String language) {
+		
+		return new SuccessDataResult<ForeignLanguage>(this.foreignLanguageDao.getByLanguage(language), "Getirildi");
 	}
 
 }

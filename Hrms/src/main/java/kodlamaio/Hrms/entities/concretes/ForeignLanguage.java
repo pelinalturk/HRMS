@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -49,8 +51,8 @@ public class ForeignLanguage {
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date creationDate;
 	
-	@Size(min = 1, max = 5, message = "1-5 Arası seviye giriniz!")
-	@NotBlank(message = "Lütfen yabancı dil seviyenizi seçiniz.")
+	@Min(1)
+	@Max(5)
 	@Column(name = "level")
-	private String languageLevel;	
+	private int languageLevel;	
 }

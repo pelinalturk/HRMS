@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.Hrms.business.abstracts.ForeignLanguageService;
 import kodlamaio.Hrms.core.utilities.result.DataResult;
 import kodlamaio.Hrms.core.utilities.result.Result;
+import kodlamaio.Hrms.entities.concretes.ForeignLanguage;
 import kodlamaio.Hrms.entities.dtos.ForeignLanguageDto;
 
 @RestController
@@ -44,12 +45,16 @@ public class ForeignLanguageController {
 	}
 	
 	@PutMapping("/{languageLevel}")
-	public Result update(@PathVariable("languageLevel") String languageLevel, int id) {
+	public Result update(@PathVariable("languageLevel") int languageLevel, int id) {
 		return this.foreignLanguageService.update(languageLevel, id);
 	}
 	
 	@DeleteMapping("{id}")
 	public Result delete(@PathVariable("id") int id) {
 		return this.foreignLanguageService.delete(id);
+	}
+	@GetMapping("/getByLanguage")
+	public DataResult<ForeignLanguage> getByLanguage(String language) {
+		return this.foreignLanguageService.getByLanguage(language);
 	}
 }
