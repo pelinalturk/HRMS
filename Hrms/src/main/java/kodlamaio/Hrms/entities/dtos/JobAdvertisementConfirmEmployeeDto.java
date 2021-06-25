@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,8 +20,7 @@ public class JobAdvertisementConfirmEmployeeDto {
 	private int id;
 	private int employee;
 	private int jobAdvertisementId;
-	//jobAdvertisement
-	
+	private boolean isConfirmed;
 	@JsonIgnore
 	@Column(name = "confirm_date")
 	@CreationTimestamp

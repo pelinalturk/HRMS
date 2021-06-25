@@ -3,8 +3,13 @@ package kodlamaio.Hrms.entities.concretes;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -14,6 +19,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -52,7 +59,14 @@ public class Candidate extends User{
 	//@Getter
 	private boolean isActive=true;
 	
-	@JsonIgnore
+//	@JsonIgnore
+//	@ManyToMany
+//	@JoinTable(name ="candidate_candidate_favorite",
+//	joinColumns = @JoinColumn(name = "candidate_id"),
+//	inverseJoinColumns = @JoinColumn(name = "favorite_id"))
+//	List<CandidateFavorities> candidatefavorities;
+	
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@Column(name= "record_date")
 	@CreationTimestamp
 	@Temporal(javax.persistence.TemporalType.DATE)

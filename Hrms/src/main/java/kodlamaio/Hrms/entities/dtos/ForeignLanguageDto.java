@@ -18,7 +18,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ForeignLanguageDto {
-	@JsonIgnore
 	private int id;
 	private String language;
 	private int curriculumVitaeId;

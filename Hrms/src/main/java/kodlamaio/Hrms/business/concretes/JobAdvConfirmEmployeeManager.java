@@ -26,30 +26,29 @@ import kodlamaio.Hrms.entities.dtos.JobAdvertisementDto;
 public class JobAdvConfirmEmployeeManager implements JobAdvertisementConfirmEmployeeService{
 
 	private JobAdvertisementConfirmEmployeeDao dao;
+	private JobAdvertisementDao jobAdvertisementDao;
 	private DtoConverterService dtoConverterService;
-	private JobAdvertisementDao jobDao;
 	
 	@Autowired
-	public JobAdvConfirmEmployeeManager(JobAdvertisementConfirmEmployeeDao dao, DtoConverterService dtoConverterService, JobAdvertisementDao jobDao) {
+	public JobAdvConfirmEmployeeManager(JobAdvertisementConfirmEmployeeDao dao, JobAdvertisementDao jobAdvertisementDao, DtoConverterService dtoConverterService) {
 		super();
 		this.dao = dao;
+		this.jobAdvertisementDao= jobAdvertisementDao;
 		this.dtoConverterService=dtoConverterService;
-		this.jobDao= jobDao;
 	}
 	
 	@Override
-	public Result add(JobAdvertisementConfirmEmployee jobAdvertisement) {
-		//this.dao.save((JobAdvertisementConfirmEmployee) dtoConverterService.dtoClassConverter(jobAdvertisement, JobAdvertisementConfirmEmployee.class));
-		if(dao.existsByJobAdvertisement_Id(jobAdvertisement.getJobAdvertisement().getId())) {
+	public Result add(JobAdvertisementConfirmEmployee confirmJob) {
+		if(dao.existsByJobAdvertisement_Id(confirmJob.getJobAdvertisement().getId())) {
 			return new ErrorResult("İş İlanı daha önce onaylandı.");
 		}
 		JobAdvertisement advertisement = new JobAdvertisement();
-		advertisement = jobDao.getById(jobAdvertisement.getJobAdvertisement().getId());
+		advertisement = jobAdvertisementDao.getById(confirmJob.getJobAdvertisement().getId());
 		advertisement.setConfirm(true);
-		jobDao.save(advertisement);
-		dao.save(jobAdvertisement);
+		jobAdvertisementDao.save(advertisement);
+		dao.save(confirmJob);
+		 //this.dao.save((JobAdvertisementConfirmEmployee) dtoConverterService.dtoClassConverter(jobAdvertisementConfirmEmployeeDto, JobAdvertisementConfirmEmployee.class) );
 		return new SuccessResult("İlan onaylandı");
-		
 	}
 
 	

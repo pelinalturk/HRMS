@@ -8,4 +8,5 @@ import kodlamaio.Hrms.entities.concretes.Candidate;
 public interface CandidateService {
 	List<Candidate> getall();
 	Result add(Candidate candidate);
+	Result update(Candidate candidate);
 }

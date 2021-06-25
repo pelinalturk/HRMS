@@ -45,4 +45,10 @@ public class TechnologyManager implements TechnologyService{
 		return new SuccessResult("Data Eklendi");
 	}
 
+	@Override
+	public Result delete(int id) {
+		this.technologyDao.deleteById(id);
+		return new SuccessResult("Data Silindi");
+	}
+
 }

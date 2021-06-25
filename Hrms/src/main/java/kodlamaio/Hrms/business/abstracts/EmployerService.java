@@ -11,4 +11,5 @@ public interface EmployerService {
 	Result add(Employer employer);
 	DataResult<List<Employer>>findByIsConfirm(boolean confirm);
 	Employer getById(int id);
+	Result update (Employer employer);
 }

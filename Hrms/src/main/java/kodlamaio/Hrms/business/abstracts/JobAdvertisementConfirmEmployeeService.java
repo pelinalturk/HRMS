@@ -9,7 +9,7 @@ import kodlamaio.Hrms.entities.concretes.JobAdvertisementConfirmEmployee;
 import kodlamaio.Hrms.entities.dtos.JobAdvertisementConfirmEmployeeDto;
 
 public interface JobAdvertisementConfirmEmployeeService {
-	Result add(JobAdvertisementConfirmEmployee jobAdvertisement);
+	Result add(JobAdvertisementConfirmEmployee jobAdvertisementConfirmEmployee);
 	DataResult<List<JobAdvertisementConfirmEmployee>> findByIsActive(boolean isActive);
 	//DataResult<List<JobAdvertisementConfirmEmployee>> getByIsConfirmed(boolean isActive);
 }

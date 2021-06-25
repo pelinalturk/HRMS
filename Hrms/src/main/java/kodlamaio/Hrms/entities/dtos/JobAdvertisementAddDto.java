@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JobAdvertisementAddDto {
-	@JsonIgnore
+	
 	private int id;
 	private int employerId;
 	private int jobPositionId;

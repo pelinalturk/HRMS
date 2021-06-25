@@ -2,6 +2,7 @@ package kodlamaio.Hrms.business.concretes;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -72,8 +73,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 
 	@Override
 	public JobAdvertisement getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.JobAdvertisementDao.findById(id).get();
 	}
 
 	@Override
@@ -91,5 +91,11 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	public DataResult<List<JobAdvertisement>> findByIsActiveTrueAndIsConfirmTrue() {
 		return new SuccessDataResult<List<JobAdvertisement>>
 		(this.JobAdvertisementDao.findByIsActiveTrueAndIsConfirmTrue(), "Aktif Ve Onaylı İş İlanları Listelendi.");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> findByIsActiveTrueAndIsConfirmTrue(int pageNo, int pageSize) {
+		PageRequest pageable = PageRequest.of(pageNo-1, pageSize);
+		return new SuccessDataResult<List<JobAdvertisement>>(this.JobAdvertisementDao.findAll(pageable).getContent());
 	}
 }

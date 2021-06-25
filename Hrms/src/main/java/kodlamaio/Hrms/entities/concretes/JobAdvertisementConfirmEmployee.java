@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -35,7 +37,6 @@ public class JobAdvertisementConfirmEmployee {
 	
 	@Column(name = "employee_id")
 	private int employee;
-	
 	@ManyToOne(targetEntity = JobAdvertisement.class, fetch = FetchType.LAZY, optional = false )
 	@JoinColumn(name ="job_advertisement_id", referencedColumnName = "id", nullable = false)
 	private JobAdvertisement jobAdvertisement;

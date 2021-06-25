@@ -65,4 +65,35 @@ public class EmployerManager implements EmployerService{
 	public Employer getById(int id) {
 		return this.employerDao.findById(id).get();
 	}
+	@Override
+	public Result update(Employer employer) {
+		Employer getEmployer = new Employer();
+		getEmployer= employerDao.findById(employer.getId()).get();
+		if(employer.getCompanyName()==null) {
+			employer.setCompanyName(getEmployer.getCompanyName());
+		}
+		if(employer.getWebAddress()==null) {
+			employer.setWebAddress(getEmployer.getWebAddress());
+		}
+		if(employer.getWebAddress()==null) {
+			employer.setWebAddress(getEmployer.getWebAddress());
+		}
+		if(employer.getPhoneNumber()==null) {
+			employer.setPhoneNumber(getEmployer.getPhoneNumber());
+		}
+		if(employer.getRecord_time()==null) {
+			employer.setRecord_time(getEmployer.getRecord_time());
+		}
+		if(employer.getEmail()==null) {
+			employer.setEmail(getEmployer.getEmail());
+		}
+		if(employer.getPassword()==null) {
+			employer.setPassword(getEmployer.getPassword());
+		}
+		if(employer.getPhoto()==null) {
+			employer.setPhoto(getEmployer.getPhoto());
+		}
+		//this.employerDao.save(employer);
+		return new SuccessResult("Sistem personelinin onayından sonra bilgileriniz güncellenecektir.");
+	}
 }

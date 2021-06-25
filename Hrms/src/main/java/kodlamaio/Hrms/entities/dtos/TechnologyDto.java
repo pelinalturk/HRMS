@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TechnologyDto {
-	@JsonIgnore
+	
 	private int id;
 	private int curriculumVitaeId;
 	@NotBlank(message = "Boş alan bırakmayınız")

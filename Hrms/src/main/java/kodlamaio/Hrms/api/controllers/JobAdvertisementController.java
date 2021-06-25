@@ -73,4 +73,14 @@ public class JobAdvertisementController {
 	public DataResult<List<JobAdvertisementDto>> findByIsConfirm(@RequestParam boolean confirm) {
 		return this.jobAdvertisementService.findByIsConfirm(confirm);
 	}
+	
+	@GetMapping("/getById")
+	public JobAdvertisement getById(int id) {
+		return this.jobAdvertisementService.getById(id);
+	}
+	
+	@GetMapping("/getByPage")
+	public DataResult<List<JobAdvertisement>> findByIsActiveTrueAndIsConfirmTrue(int pageNo, int pageSize) {
+		return this.jobAdvertisementService.findByIsActiveTrueAndIsConfirmTrue(pageNo, pageSize);
+	}
 }

@@ -50,4 +50,35 @@ public class CandidateManager implements CandidateService{
 		
 		return new SuccessResult("Doğrulama maili gönderildi.");
 	}
+	@Override
+	public Result update(Candidate candidate) {
+		Candidate getCandidate = new Candidate();
+		getCandidate=candidateDao.findById(candidate.getId()).get();
+		if(candidate.getFirstName() == null) {
+			candidate.setFirstName(getCandidate.getFirstName());
+		}
+		if(candidate.getLastName() == null) {
+			candidate.setLastName(getCandidate.getLastName());
+		}
+		if(candidate.getNationalIdentity() == null) {
+			candidate.setNationalIdentity(getCandidate.getNationalIdentity());
+		}
+		if(candidate.getBirthYear() == null) {
+			candidate.setBirthYear(getCandidate.getBirthYear());
+		}
+		if(candidate.getEmail() == null) {
+			candidate.setEmail(getCandidate.getEmail());
+		}
+		if(candidate.getPassword() == null) {
+			candidate.setPassword(getCandidate.getPassword());
+		}
+		if(candidate.getPhoto() == null) {
+			candidate.setPhoto(getCandidate.getPhoto());
+		}
+		if(candidate.getRecordTime() == null) {
+			candidate.setRecordTime(getCandidate.getRecordTime());
+		}
+		this.candidateDao.save(candidate);
+		return new SuccessResult("Kişisel bilgiler güncellendi");
+	}
 }

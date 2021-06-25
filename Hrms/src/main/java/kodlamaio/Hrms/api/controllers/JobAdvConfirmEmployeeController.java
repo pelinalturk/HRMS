@@ -36,7 +36,7 @@ public class JobAdvConfirmEmployeeController {
 		return this.confirmEmployeeService.findByIsActive(isActive);
 	}
 	@PostMapping("/add")
-	Result add(@RequestBody JobAdvertisementConfirmEmployee jobAdvertisement) {
-		return this.confirmEmployeeService.add(jobAdvertisement);
+	Result add(@RequestBody JobAdvertisementConfirmEmployee jobAdvertisementConfirmEmployeeDto) {
+		return this.confirmEmployeeService.add(jobAdvertisementConfirmEmployeeDto);
 	}
 }

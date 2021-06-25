@@ -49,4 +49,9 @@ public class EmployerController {
 	public Employer getById(@RequestParam int id) {
 		return this.employerService.getById(id);
 	}
+	
+	@PostMapping("/update")
+	public Result update(@RequestBody Employer employer) {
+		return this.employerService.update(employer);
+	}
 }
