@@ -18,22 +18,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SchoolAddDto {
-	@JsonIgnore
+	
 	private int id;
 	
 	private int curriculumVitaeId;
-	
-	@NotBlank(message = "Okul ismini boş bırakmayınız.")
 	private String schoolName;
-	
 	private int degreeId;
-	
-	@NotBlank(message = "Bölümünüzü giriniz.")
 	private String schoolDepartment;
-	
-	//@NotBlank(message = "Lütfen okula başlama tarihini giriniz.")
 	private LocalDate startingDate;
-	
 	private LocalDate endingDate;
 	
 	@JsonIgnore

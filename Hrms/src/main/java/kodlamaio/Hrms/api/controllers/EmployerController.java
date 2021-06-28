@@ -16,6 +16,8 @@ import kodlamaio.Hrms.business.abstracts.EmployerService;
 import kodlamaio.Hrms.core.utilities.result.DataResult;
 import kodlamaio.Hrms.core.utilities.result.Result;
 import kodlamaio.Hrms.entities.concretes.Employer;
+import kodlamaio.Hrms.entities.concretes.EmployerUpdate;
+import kodlamaio.Hrms.entities.dtos.EmployerUpdateDto;
 
 @RestController
 @RequestMapping("/api/employers")
@@ -50,8 +52,13 @@ public class EmployerController {
 		return this.employerService.getById(id);
 	}
 	
-	@PostMapping("/update")
-	public Result update(@RequestBody Employer employer) {
-		return this.employerService.update(employer);
+	@PostMapping("/update")//güncelleme isteği
+	public DataResult<EmployerUpdate> confirmUpdateEmployer(@Valid @RequestBody EmployerUpdateDto employerUpdateDto,  @RequestParam int employeeId, @RequestParam int employerId){
+		return employerService.confirmUpdate(employerUpdateDto, employerId);
+	}
+	
+	@GetMapping("/update/confirm")//onay
+	public DataResult<Employer> updateEmployer( @RequestParam int employeeId, @RequestParam int employerId){
+		return employerService.updateEmployer(employeeId, employerId);
 	}
 }

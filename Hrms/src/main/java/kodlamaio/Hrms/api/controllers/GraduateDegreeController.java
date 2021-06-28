@@ -39,5 +39,10 @@ public class GraduateDegreeController {
 	public DataResult<List<GraduateDegree>>getAll(){
 		return this.graduateDegreeService.getAll();
 	}
+	@GetMapping("/getById")
+	public DataResult<List<GraduateDegree>> findById(int id) {
+		return this.graduateDegreeService.findById(id);
+	}
+	
 	
 }

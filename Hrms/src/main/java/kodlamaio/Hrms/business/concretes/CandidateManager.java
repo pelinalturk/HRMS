@@ -54,10 +54,10 @@ public class CandidateManager implements CandidateService{
 	public Result update(Candidate candidate) {
 		Candidate getCandidate = new Candidate();
 		getCandidate=candidateDao.findById(candidate.getId()).get();
-		if(candidate.getFirstName() == null) {
+		if(candidate.getFirstName() == null || candidate.getFirstName()=="") {
 			candidate.setFirstName(getCandidate.getFirstName());
 		}
-		if(candidate.getLastName() == null) {
+		if(candidate.getLastName() == null || candidate.getLastName()=="") {
 			candidate.setLastName(getCandidate.getLastName());
 		}
 		if(candidate.getNationalIdentity() == null) {
@@ -66,13 +66,13 @@ public class CandidateManager implements CandidateService{
 		if(candidate.getBirthYear() == null) {
 			candidate.setBirthYear(getCandidate.getBirthYear());
 		}
-		if(candidate.getEmail() == null) {
+		if(candidate.getEmail() == null || candidate.getEmail() =="") {
 			candidate.setEmail(getCandidate.getEmail());
 		}
 		if(candidate.getPassword() == null) {
 			candidate.setPassword(getCandidate.getPassword());
 		}
-		if(candidate.getPhoto() == null) {
+		if(candidate.getPhoto() == null || candidate.getPhoto() =="") {
 			candidate.setPhoto(getCandidate.getPhoto());
 		}
 		if(candidate.getRecordTime() == null) {

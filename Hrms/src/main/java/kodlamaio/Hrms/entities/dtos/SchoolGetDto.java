@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SchoolGetDto {
-	@JsonIgnore
+	
 	private int id;
 	
 	private int curriculumVitaeId;

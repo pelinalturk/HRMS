@@ -40,4 +40,9 @@ public class EmployeesController {
 		return this.employeeService.add(employee);
 	}
 	
+	@PostMapping("/update")
+	public Result update( @RequestBody Employee employee) {
+		return this.employeeService.update(employee);
+	}
+	
 }

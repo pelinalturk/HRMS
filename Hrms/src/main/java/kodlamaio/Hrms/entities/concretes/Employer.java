@@ -1,7 +1,10 @@
 package kodlamaio.Hrms.entities.concretes;
 
 import java.util.Date;
+import java.util.Map;
+
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -9,6 +12,7 @@ import javax.persistence.Temporal;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -41,7 +45,6 @@ public class Employer extends User{
 	private String phoneNumber;
 	
 	@JsonIgnore
-	//@Column(name ="is_active",columnDefinition = "true")
 	@Column(name ="is_active")
 	private boolean isActive;
 	
@@ -54,6 +57,7 @@ public class Employer extends User{
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date record_time;
 	
+//	
 //	@OneToMany(mappedBy = "employer") //employer_id
 //	@JsonIgnore 
 //	private List<JobAdvertisement>jobAdvertisements;

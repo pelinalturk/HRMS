@@ -1,5 +1,6 @@
 package kodlamaio.Hrms.entities.concretes;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,44 +11,49 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
 
-import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 
+import kodlamaio.Hrms.entities.dtos.EmployerUpdateDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import springfox.documentation.spring.web.json.Json;
 
-//@Data
-//@AllArgsConstructor
-//@NoArgsConstructor
-//@Entity
-//@Table(name = "employer_update")
-//public class EmployerUpdate {
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@Column(name = "id")
-//	private int id;
-//	
-//	@ManyToOne
-//	@JoinColumn(name = "employer_id")
-//	private Employer employer;
-//	
-//	@Column(name = "employee_id")
-//	private int employee;
-//	
-//	@Column(name = "data")
-//	private String data;
-//	
-//	@Column(name = "is_confirm")
-//	private boolean isConfirm =false;
-//	
-//	@JsonIgnore
-//	@Column(name= "confirm_date")
-//	@CreationTimestamp
-//	@Temporal(javax.persistence.TemporalType.DATE)
-//	private Date confirmDate;
-//}
+@Data
+@NoArgsConstructor
+@Entity
+@Table(name = "employer_update")
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
+public class EmployerUpdate{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private int id;
+
+	@ManyToOne
+	@JoinColumn(name = "employer_id")
+	private Employer employer;
+	
+	@ManyToOne
+	@JoinColumn(name = "employee_id")
+	private Employee employee;
+	
+	@Column(name = "is_confirm")
+	private boolean isConfirm =false;
+	
+	@Column(name= "confirm_date")
+	private LocalDate confirmDate;
+	
+	 @Type(type = "jsonb")
+	    @Column(columnDefinition = "jsonb")
+	    private EmployerUpdateDto employerUpdateDto;
+	 
+	 public EmployerUpdate(EmployerUpdateDto employerUpdateDto, Employer employer) {
+	        this.employerUpdateDto = employerUpdateDto;
+	        this.employer = employer;
+	    }
+}

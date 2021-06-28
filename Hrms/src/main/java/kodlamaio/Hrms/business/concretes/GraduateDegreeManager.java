@@ -27,7 +27,6 @@ public class GraduateDegreeManager implements GraduateDegreeService{
 
 	@Override
 	public DataResult<List<GraduateDegree>> getAll() {
-		
 		return new SuccessDataResult<List<GraduateDegree>>(this.graduateDegreeDao.findAll(), "true");
 	}
 
@@ -38,5 +37,11 @@ public class GraduateDegreeManager implements GraduateDegreeService{
 		}
 		this.graduateDegreeDao.save(graduateDegree);
 		return  new SuccessResult("Eklendi");
+	}
+
+	@Override
+	public DataResult<List<GraduateDegree>> findById(int id) {
+		return new SuccessDataResult<List<GraduateDegree>>
+		(this.graduateDegreeDao.findById(id),"");
 	}
 }

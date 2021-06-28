@@ -20,7 +20,6 @@ import kodlamaio.Hrms.entities.dtos.SchoolGetDto;
 public class SchoolManager implements SchoolService{
 
 	private SchoolDao schoolDao;
-	//private ModelMapper modelMapper;
 	private DtoConverterService dtoConverterService;
 	
 	@Autowired
@@ -28,12 +27,8 @@ public class SchoolManager implements SchoolService{
 		super();
 		this.schoolDao = schoolDao;
 		this.dtoConverterService=dtoConverterService;
-		//this.modelMapper=modelMapper;
 	}
 	
-//	private School dtoConverter(SchoolAddDto schoolAddDto) {
-//		return modelMapper.map(schoolAddDto, School.class);
-//	}
 
 	@Override
 	public DataResult<List<SchoolGetDto>> getAll() {
@@ -44,7 +39,7 @@ public class SchoolManager implements SchoolService{
 	@Override
 	public Result add(SchoolAddDto schoolAddDto) {
 		//endingDate boş gönderilebilmeli
-		if (schoolAddDto.getEndingDate() == null || schoolAddDto.getEndingDate().toString()=="String") {
+		if (schoolAddDto.getEndingDate() == null || schoolAddDto.getEndingDate().toString()=="string") {
 			schoolAddDto.setEndingDate(null);
 		}
 		this.schoolDao.save((School) dtoConverterService.dtoClassConverter(schoolAddDto, School.class));
@@ -54,6 +49,13 @@ public class SchoolManager implements SchoolService{
 	@Override
 	public DataResult<List<School>> getBySchoolNameOrderByEndingDateDesc(int id) {
 		return new SuccessDataResult<List<School>>(this.schoolDao.findAllByCurriculumVitaeIdOrderByEndingDateDesc(id), "Mezuniyet yıllarına göre listelendi");
+	}
+
+
+	@Override
+	public Result delete(int id) {
+		this.schoolDao.deleteById(id);
+		return new SuccessResult("Data Silindi ");
 	}
 
 }

@@ -1,12 +1,15 @@
 package kodlamaio.Hrms.business.concretes;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.Hrms.business.abstracts.EmployeeConfirmService;
+import kodlamaio.Hrms.business.abstracts.EmployeeService;
 import kodlamaio.Hrms.business.abstracts.EmployerService;
+import kodlamaio.Hrms.business.abstracts.EmployerUpdateService;
 import kodlamaio.Hrms.business.abstracts.VerificationCodeService;
 import kodlamaio.Hrms.core.utilities.result.DataResult;
 import kodlamaio.Hrms.core.utilities.result.ErrorResult;
@@ -14,8 +17,12 @@ import kodlamaio.Hrms.core.utilities.result.Result;
 import kodlamaio.Hrms.core.utilities.result.SuccessDataResult;
 import kodlamaio.Hrms.core.utilities.result.SuccessResult;
 import kodlamaio.Hrms.dataAccess.abstracts.EmployerDao;
+import kodlamaio.Hrms.dataAccess.abstracts.EmployerUpdateDao;
 import kodlamaio.Hrms.dataAccess.abstracts.UserDao;
+import kodlamaio.Hrms.entities.concretes.Employee;
 import kodlamaio.Hrms.entities.concretes.Employer;
+import kodlamaio.Hrms.entities.concretes.EmployerUpdate;
+import kodlamaio.Hrms.entities.dtos.EmployerUpdateDto;
 
 @Service
 public class EmployerManager implements EmployerService{
@@ -24,14 +31,19 @@ public class EmployerManager implements EmployerService{
 	UserDao userDao;
 	VerificationCodeService verificationCode;
 	EmployeeConfirmService employeeConfirmService;
+	EmployerUpdateDao employerUpdateDao;
+	EmployeeService employeeService;
+	
 	@Autowired
-	public EmployerManager(EmployerDao employerDao,UserDao userDao, VerificationCodeService verificationCodeService,EmployeeConfirmService employeeConfirmService) 
+	public EmployerManager(EmployerDao employerDao,UserDao userDao,EmployeeService employeeService, VerificationCodeService verificationCodeService,EmployeeConfirmService employeeConfirmService, EmployerUpdateDao employerUpdateDao) 
 	{
 		super();
 		this.employerDao=employerDao;
 		this.userDao = userDao;
 		this.verificationCode= verificationCodeService;
 		this.employeeConfirmService = employeeConfirmService;
+		this.employerUpdateDao = employerUpdateDao;
+		this.employeeService = employeeService;
 	}
 	@Override
 	public DataResult<List<Employer>> getall() {
@@ -66,34 +78,30 @@ public class EmployerManager implements EmployerService{
 		return this.employerDao.findById(id).get();
 	}
 	@Override
-	public Result update(Employer employer) {
-		Employer getEmployer = new Employer();
-		getEmployer= employerDao.findById(employer.getId()).get();
-		if(employer.getCompanyName()==null) {
-			employer.setCompanyName(getEmployer.getCompanyName());
-		}
-		if(employer.getWebAddress()==null) {
-			employer.setWebAddress(getEmployer.getWebAddress());
-		}
-		if(employer.getWebAddress()==null) {
-			employer.setWebAddress(getEmployer.getWebAddress());
-		}
-		if(employer.getPhoneNumber()==null) {
-			employer.setPhoneNumber(getEmployer.getPhoneNumber());
-		}
-		if(employer.getRecord_time()==null) {
-			employer.setRecord_time(getEmployer.getRecord_time());
-		}
-		if(employer.getEmail()==null) {
-			employer.setEmail(getEmployer.getEmail());
-		}
-		if(employer.getPassword()==null) {
-			employer.setPassword(getEmployer.getPassword());
-		}
-		if(employer.getPhoto()==null) {
-			employer.setPhoto(getEmployer.getPhoto());
-		}
-		//this.employerDao.save(employer);
-		return new SuccessResult("Sistem personelinin onayından sonra bilgileriniz güncellenecektir.");
+	public DataResult<EmployerUpdate> confirmUpdate(EmployerUpdateDto employerUpdateDto, int employerId) {
+		Employer employer = getById(employerId);
+		EmployerUpdate employerUpdate = new EmployerUpdate(employerUpdateDto, employer);
+		return new SuccessDataResult<EmployerUpdate>
+		(this.employerUpdateDao.save(employerUpdate), "Güncelleme isteği gönderildi. Sistem onayından sonra kayıda geçecektir.");
 	}
+	
+	@Override
+	public DataResult<Employer> updateEmployer(int employeeId, int employerId) {
+		Employee employee = employeeService.findById(employeeId);
+		Employer employer = getById(employerId);
+		EmployerUpdate employerUpdate = employerUpdateConfirm(employee, employerId);
+		employer.setCompanyName(employerUpdate.getEmployerUpdateDto().getCompanyName());
+		employer.setWebAddress(employerUpdate.getEmployerUpdateDto().getWebbAddress());
+		employer.setEmail(employerUpdate.getEmployerUpdateDto().getEmail());
+		return new SuccessDataResult<Employer>
+		(employerDao.save(employer), "Güncelleme onaylandı");
+	}
+	
+	 public EmployerUpdate employerUpdateConfirm(Employee employee, int employerId){
+		 EmployerUpdate employeeUpdate = employerUpdateDao.findByEmployer_Id(employerId);
+		// employeeUpdate.setConfirmDate(new Date());
+		 employeeUpdate.setConfirm(true);
+		 employeeUpdate.setEmployee(employee);
+	     return employerUpdateDao.save(employeeUpdate);
+	 }
 }

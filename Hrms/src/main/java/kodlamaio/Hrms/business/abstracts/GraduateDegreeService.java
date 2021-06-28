@@ -9,4 +9,5 @@ import kodlamaio.Hrms.entities.concretes.GraduateDegree;
 public interface GraduateDegreeService {
 	DataResult<List<GraduateDegree>> getAll();
 	Result add(GraduateDegree graduateDegree);
+	DataResult<List<GraduateDegree>> findById(int id);
 }
