@@ -1,8 +1,8 @@
 package kodlamaio.Hrms.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,19 +11,18 @@ import kodlamaio.Hrms.core.utilities.result.Result;
 import kodlamaio.Hrms.entities.concretes.EmployerUpdate;
 
 @RestController
-@RequestMapping("/api/employerUpdateController")
+@RequestMapping("/api/EmployerUpdateController")
+@CrossOrigin
 public class EmployerUpdateController {
-	private EmployerUpdateService employerUpdateService;
+	EmployerUpdateService employerUpdateService;
 
 	@Autowired
 	public EmployerUpdateController(EmployerUpdateService employerUpdateService) {
 		super();
 		this.employerUpdateService = employerUpdateService;
 	}
-	
-	@PostMapping("/add")
-	public Result add(@RequestBody EmployerUpdate employerUpdate) {
-		return this.employerUpdateService.add(employerUpdate);
+	@GetMapping("/getByEmployerId")
+	public EmployerUpdate findByEmployer_Id(int employerId) {
+		return this.employerUpdateService.findByEmployer_Id(employerId);
 	}
-	
 }

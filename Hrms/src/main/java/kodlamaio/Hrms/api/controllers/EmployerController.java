@@ -53,7 +53,7 @@ public class EmployerController {
 	}
 	
 	@PostMapping("/update")//güncelleme isteği
-	public DataResult<EmployerUpdate> confirmUpdateEmployer(@Valid @RequestBody EmployerUpdateDto employerUpdateDto,  @RequestParam int employeeId, @RequestParam int employerId){
+	public DataResult<EmployerUpdate> confirmUpdateEmployer(@Valid @RequestBody EmployerUpdateDto employerUpdateDto, @RequestParam int employerId){
 		return employerService.confirmUpdate(employerUpdateDto, employerId);
 	}
 	

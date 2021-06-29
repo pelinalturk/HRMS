@@ -52,7 +52,7 @@ public class EmployerUpdateManager implements EmployerUpdateService{
 //		if(employerUpdate.getPhoto()==null) {
 //			employerUpdate.setPhoto(getEmployer.getPhoto());
 //		}
-		updateDao.save(employerUpdate);
+		//updateDao.save(employerUpdate);
 		return new SuccessResult("Güncelleme isteği gönderildi. Onaylandıktan sonra sisteme işlenecektir.");
 	}
 
@@ -63,6 +63,11 @@ public class EmployerUpdateManager implements EmployerUpdateService{
 		}
 		updateDao.save(null);
 		return new SuccessResult();
+	}
+
+	@Override
+	public EmployerUpdate findByEmployer_Id(int employerId) {
+		return this.updateDao.findByEmployer_Id(employerId);
 	}
 
 }
