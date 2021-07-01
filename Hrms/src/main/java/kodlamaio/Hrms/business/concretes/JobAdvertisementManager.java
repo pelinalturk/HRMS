@@ -3,9 +3,8 @@ package kodlamaio.Hrms.business.concretes;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import kodlamaio.Hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.Hrms.core.utilities.dtoConverter.DtoConverterService;
 import kodlamaio.Hrms.core.utilities.result.DataResult;
@@ -16,7 +15,7 @@ import kodlamaio.Hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.Hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.Hrms.entities.dtos.JobAdvertisementAddDto;
 import kodlamaio.Hrms.entities.dtos.JobAdvertisementDto;
-import net.bytebuddy.asm.Advice.This;
+import kodlamaio.Hrms.entities.dtos.JobAdvertisementsFilterDto;
 
 @Service
 public class JobAdvertisementManager implements JobAdvertisementService{
@@ -27,7 +26,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	@Autowired
 	public JobAdvertisementManager(JobAdvertisementDao jobAdvertisementDao, DtoConverterService dtoConverterService) {
 		super();
-		JobAdvertisementDao = jobAdvertisementDao;
+		this.JobAdvertisementDao = jobAdvertisementDao;
 		this.dtoConverterService=dtoConverterService;
 	}
 
@@ -97,5 +96,25 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	public DataResult<List<JobAdvertisement>> findByIsActiveTrueAndIsConfirmTrue(int pageNo, int pageSize) {
 		PageRequest pageable = PageRequest.of(pageNo-1, pageSize);
 		return new SuccessDataResult<List<JobAdvertisement>>(this.JobAdvertisementDao.findAll(pageable).getContent());
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getByPositionLevelId(int id) {
+		return new SuccessDataResult<List<JobAdvertisement>>
+		(this.JobAdvertisementDao.getByPositionLevelId(id), "Data Listelendi");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getByJobPositionId(int id) {
+		return new SuccessDataResult<List<JobAdvertisement>>
+		(this.JobAdvertisementDao.getByJobPositionId(id), "Data Listelendi");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getByFilterJob(int pageNo, int pageSize,JobAdvertisementsFilterDto jobAdvertisementFilter) {
+		 Pageable pageable = PageRequest.of(pageNo -1, pageSize);
+	     return new SuccessDataResult<List<JobAdvertisement>>
+	    (this.JobAdvertisementDao.getByFilter(jobAdvertisementFilter, pageable).getContent(), 
+	     this.JobAdvertisementDao.getByFilter(jobAdvertisementFilter,pageable).getTotalElements()+"");
 	}
 }

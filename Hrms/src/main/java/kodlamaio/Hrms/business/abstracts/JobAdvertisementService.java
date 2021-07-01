@@ -7,20 +7,22 @@ import kodlamaio.Hrms.core.utilities.result.Result;
 import kodlamaio.Hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.Hrms.entities.dtos.JobAdvertisementAddDto;
 import kodlamaio.Hrms.entities.dtos.JobAdvertisementDto;
+import kodlamaio.Hrms.entities.dtos.JobAdvertisementsFilterDto;
 
 public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisementDto>> getAll();
 	Result add(JobAdvertisementAddDto jobAdvertisementAddDto);
-	//DataResult<JobAdvertisement> getByJobAdvertisementName(String name);
 	DataResult<List<JobAdvertisementDto>> findAllByIsActive(boolean active);
 	DataResult<List<JobAdvertisementDto>> findAllByIsActiveTrueOrderByCreatedDateAsc();
 	DataResult<List<JobAdvertisementDto>>getByEmployer_CompanyName(String companyName);
-	//List<JobAdvertisement> getByEmployer(String companyName);
 	Result update(JobAdvertisement jobAdvertisement);
-	//Result updateConfirm(boolean confirm, int id);
-	 JobAdvertisement getById(int id);
-	 DataResult<List<JobAdvertisementDto>>findByIsConfirm(boolean confirm);
-	 List<JobAdvertisement> getByEmployerId(int id);
-	 DataResult<List<JobAdvertisement>> findByIsActiveTrueAndIsConfirmTrue();
-	 DataResult<List<JobAdvertisement>> findByIsActiveTrueAndIsConfirmTrue(int pageNo, int pageSize);
+	JobAdvertisement getById(int id);
+	DataResult<List<JobAdvertisementDto>>findByIsConfirm(boolean confirm);
+	List<JobAdvertisement> getByEmployerId(int id);
+	DataResult<List<JobAdvertisement>> findByIsActiveTrueAndIsConfirmTrue();
+	DataResult<List<JobAdvertisement>> findByIsActiveTrueAndIsConfirmTrue(int pageNo, int pageSize);
+	DataResult<List<JobAdvertisement>> getByPositionLevelId(int id);
+	DataResult<List<JobAdvertisement>> getByJobPositionId(int id);
+	DataResult<List<JobAdvertisement>> getByFilterJob(int pageNo, int pageSize, JobAdvertisementsFilterDto jobAdvertisementFilter);
+
 }
