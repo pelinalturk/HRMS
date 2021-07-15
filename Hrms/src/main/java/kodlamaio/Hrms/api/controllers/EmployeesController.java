@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.Hrms.business.abstracts.EmployeeService;
@@ -43,6 +44,11 @@ public class EmployeesController {
 	@PostMapping("/update")
 	public Result update( @RequestBody Employee employee) {
 		return this.employeeService.update(employee);
+	}
+	
+	@GetMapping("/getById")
+	public Employee findById(@RequestParam int id) {
+		return this.employeeService.findById(id);
 	}
 	
 }

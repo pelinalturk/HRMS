@@ -1,4 +1,4 @@
-package kodlamaio.Hrms.core.utilities.validation;
+package kodlamaio.Hrms.core.utilities.validation.concretes;
 
 public class EmailValidationManager {
 

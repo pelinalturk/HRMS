@@ -9,4 +9,6 @@ public interface CandidateService {
 	List<Candidate> getall();
 	Result add(Candidate candidate);
 	Result update(Candidate candidate);
+	Candidate getById(int id);
+	Result login(String email, String password);
 }

@@ -15,12 +15,12 @@ import kodlamaio.Hrms.entities.concretes.PositionLevel;
 @RestController
 @RequestMapping("/api/positionLevel")
 @CrossOrigin
-public class PositionLevelController {
+public class PositionLevelsController {
 	
 	private PositionLevelService positionLevelService;
 
 	@Autowired
-	public PositionLevelController(PositionLevelService positionLevelService) {
+	public PositionLevelsController(PositionLevelService positionLevelService) {
 		super();
 		this.positionLevelService = positionLevelService;
 	}

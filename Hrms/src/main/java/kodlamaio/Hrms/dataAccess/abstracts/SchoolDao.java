@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import kodlamaio.Hrms.entities.concretes.School;
 
 public interface SchoolDao extends JpaRepository<School, Integer>{
-	List<School> findAllByCurriculumVitaeIdOrderByEndingDateDesc(int id);
+	List<School> findAllByCandidateIdOrderByEndingDateDesc(int id);
 }

@@ -19,7 +19,6 @@ import kodlamaio.Hrms.entities.dtos.TechnologyDto;
 public class TechnologyManager implements TechnologyService{
 
 	private TechnologyDao technologyDao;
-	//private ModelMapper modelMapper;
 	private DtoConverterService dtoConverterService;
 	
 	@Autowired
@@ -27,12 +26,8 @@ public class TechnologyManager implements TechnologyService{
 		super();
 		this.technologyDao = technologyDao;
 		this.dtoConverterService=dtoConverterService;
-		//this.modelMapper=modelMapper;
 	}
 	
-//	private Technology dtoConverter(TechnologyDto technologyDto) {
-//		return modelMapper.map(technologyDto,Technology.class);
-//	}
 	@Override
 	public DataResult<List<TechnologyDto>> getAll() {
 		return  new SuccessDataResult<List<TechnologyDto>>
@@ -49,6 +44,11 @@ public class TechnologyManager implements TechnologyService{
 	public Result delete(int id) {
 		this.technologyDao.deleteById(id);
 		return new SuccessResult("Data Silindi");
+	}
+
+	@Override
+	public List<Technology> getByCandidateId(int id) {
+		return this.technologyDao.getByCandidateId(id);
 	}
 
 }

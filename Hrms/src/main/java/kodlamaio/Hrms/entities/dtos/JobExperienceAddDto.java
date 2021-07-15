@@ -17,7 +17,7 @@ public class JobExperienceAddDto {
 	@JsonIgnore
 	private int id;
 	
-	private int curriculumVitaeId;
+	private int candidateId;
 	
 	private int jobPositionId;
 	

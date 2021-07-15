@@ -3,8 +3,9 @@ package kodlamaio.Hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
+import kodlamaio.Hrms.Adapters.abstracts.CandidateCheckService;
 import kodlamaio.Hrms.business.abstracts.CandidateService;
 import kodlamaio.Hrms.business.abstracts.VerificationCodeService;
 import kodlamaio.Hrms.core.utilities.result.ErrorResult;
@@ -20,16 +21,16 @@ public class CandidateManager implements CandidateService{
 	private CandidateDao candidateDao;
 	private UserDao userDao;
 	private VerificationCodeService verificationService;
-	//private VerificationCodeDao codeDao;
-	//private EmailValidationService emailValidationService;
+	private CandidateCheckService candidateCheckService;
 	
 	@Autowired
-	public CandidateManager(CandidateDao candidateDao, UserDao userDao,VerificationCodeService verificationService) {
+	public CandidateManager(CandidateDao candidateDao, UserDao userDao,VerificationCodeService verificationService,
+		@Qualifier("fakeMernis")CandidateCheckService candidateCheckService) {
 		super();
 		this.candidateDao=candidateDao;
 		this.userDao=userDao;
 		this.verificationService= verificationService;
-		//this.codeDao = codeDao;
+		this.candidateCheckService=candidateCheckService;
 	}
 	@Override
 	public List<Candidate> getall() {
@@ -41,19 +42,26 @@ public class CandidateManager implements CandidateService{
 	    {
 			return new ErrorResult("Bu mail adresi sistemde kayıtlıdır!");
 		}
-		else if(this.candidateDao.findByNationalIdentity(candidate.getNationalIdentity()) != null)
+		 if(this.candidateDao.findByNationalIdentity(candidate.getNationalIdentity()) != null)
 		{
 			return new ErrorResult("Bu T.C. Kimlik numarası sistemde kayıtlıdır!");		
 		}
+		 if(!this.candidateCheckService.checkCandidate(candidate)) {
+			 return new ErrorResult("Kişi doğrulanamadı.");
+		 }
+		 if(!candidate.getPassword().equals(candidate.getPasswordRepeat())) {
+			 return new ErrorResult("Şifreler uyuşmuyor.");
+		 }
+		 
 		this.candidateDao.save(candidate);
 		this.verificationService.add(candidate);
-		
 		return new SuccessResult("Doğrulama maili gönderildi.");
 	}
+	
 	@Override
-	public Result update(Candidate candidate) {
-		Candidate getCandidate = new Candidate();
-		getCandidate=candidateDao.findById(candidate.getId()).get();
+	public Result update(Candidate candidate) {//parametre olarak candidateId de gelse
+		Candidate getCandidate = candidateDao.findById(candidate.getId()).get();
+		//getCandidate=candidateDao.findById(candidate.getId()).get();
 		if(candidate.getFirstName() == null || candidate.getFirstName()=="") {
 			candidate.setFirstName(getCandidate.getFirstName());
 		}
@@ -69,7 +77,7 @@ public class CandidateManager implements CandidateService{
 		if(candidate.getEmail() == null || candidate.getEmail() =="") {
 			candidate.setEmail(getCandidate.getEmail());
 		}
-		if(candidate.getPassword() == null) {
+		if(candidate.getPassword() == null || candidate.getPassword()=="") {
 			candidate.setPassword(getCandidate.getPassword());
 		}
 		if(candidate.getPhoto() == null || candidate.getPhoto() =="") {
@@ -80,5 +88,16 @@ public class CandidateManager implements CandidateService{
 		}
 		this.candidateDao.save(candidate);
 		return new SuccessResult("Kişisel bilgiler güncellendi");
+	}
+	@Override
+	public Candidate getById(int id) {
+		return this.candidateDao.findById(id).get();
+	}
+	@Override
+	public Result login(String email, String password) {
+		if(this.candidateDao.login(email, password) == null) {
+			return new ErrorResult("Email veya şifre hatalı");
+		}
+		return new SuccessResult("Giriş başarılı.");
 	}
 }

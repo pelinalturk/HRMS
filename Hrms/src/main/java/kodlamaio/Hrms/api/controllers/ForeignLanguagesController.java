@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.Hrms.business.abstracts.ForeignLanguageService;
@@ -24,12 +25,12 @@ import kodlamaio.Hrms.entities.dtos.ForeignLanguageDto;
 @RestController
 @RequestMapping("/api/foreignLanguageController")
 @CrossOrigin
-public class ForeignLanguageController {
+public class ForeignLanguagesController {
 	
 	private ForeignLanguageService foreignLanguageService;
 
 	@Autowired
-	public ForeignLanguageController(ForeignLanguageService foreignLanguageService) {
+	public ForeignLanguagesController(ForeignLanguageService foreignLanguageService) {
 		super();
 		this.foreignLanguageService = foreignLanguageService;
 	}
@@ -56,5 +57,10 @@ public class ForeignLanguageController {
 	@GetMapping("/getByLanguage")
 	public DataResult<ForeignLanguage> getByLanguage(String language) {
 		return this.foreignLanguageService.getByLanguage(language);
+	}
+	
+	@GetMapping("/getByCandidateId")
+	List<ForeignLanguage> getByCandidateId(@RequestParam int id){
+		return this.foreignLanguageService.getByCandidateId(id);
 	}
 }

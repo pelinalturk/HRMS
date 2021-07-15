@@ -54,15 +54,15 @@ public class CurriculumVitae {
 	@Column(name = "creation_date")
 	private LocalDate creationDate;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "curriculumVitae")
-	private List<School> school;
+//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "curriculumVitae")
+//	private List<School> school;
+//	
+//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "curriculumVitae")
+//	private List<Technology> technology;
+//	
+//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "curriculumVitae")
+//	private List<ForeignLanguage> foreignLanguage;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "curriculumVitae")
-	private List<Technology> technology;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "curriculumVitae")
-	private List<ForeignLanguage> foreignLanguage;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "curriculumVitae")
-	private List<JobExperience> jobExperience;	
+//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "curriculumVitae")
+//	private List<JobExperience> jobExperience;	
 }

@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class TechnologyDto {
 	
 	private int id;
-	private int curriculumVitaeId;
+	private int CandidateId;
 	@NotBlank(message = "Boş alan bırakmayınız")
 	private String description;
 	@JsonIgnore

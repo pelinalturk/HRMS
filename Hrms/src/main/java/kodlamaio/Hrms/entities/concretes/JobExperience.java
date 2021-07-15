@@ -18,6 +18,7 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -30,16 +31,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "job_experience")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "candidates"})
 public class JobExperience {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
-	@JsonProperty(access = Access.WRITE_ONLY)
-	@ManyToOne(targetEntity = CurriculumVitae.class)
-	@JoinColumn(name = "curriculum_vitae_id")
-	private CurriculumVitae curriculumVitae;
+//	@JsonProperty(access = Access.WRITE_ONLY)
+//	@ManyToOne(targetEntity = CurriculumVitae.class)
+//	@JoinColumn(name = "curriculum_vitae_id")
+//	private CurriculumVitae curriculumVitae;
 	
 	@NotBlank(message = "Şirket ismi boş bırakılamaz!")
 	@Column(name = "company_name")
@@ -55,6 +57,10 @@ public class JobExperience {
 	
 	@Column(name = "ending_date")
 	private LocalDate endingDate;
+	
+	@ManyToOne(targetEntity = Candidate.class)
+	@JoinColumn(name = "candidate_id")
+	private Candidate candidate;
 	
 	@JsonIgnore
 	@CreationTimestamp

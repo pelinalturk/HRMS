@@ -1,4 +1,4 @@
-package kodlamaio.Hrms.core.utilities.validation;
+package kodlamaio.Hrms.core.utilities.validation.abstracts;
 
 
 import kodlamaio.Hrms.core.utilities.result.Result;

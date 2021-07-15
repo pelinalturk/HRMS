@@ -15,4 +15,6 @@ public interface EmployerService {
 	Employer getById(int id);
 	DataResult<EmployerUpdate> confirmUpdate(EmployerUpdateDto employerUpdateDto, int employerId);
 	DataResult<Employer> updateEmployer(int employeeId, int employerId);
+	DataResult<List<Employer>>IsActiveTrueIsConfirmFalse();
+	Result login(String email, String password);
 }

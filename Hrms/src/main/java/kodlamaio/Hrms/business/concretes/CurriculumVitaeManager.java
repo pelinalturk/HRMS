@@ -60,4 +60,17 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 		return new SuccessDataResult<List<CurriculumVitaeDto>>
 		(this.dtoConverterService.dtoConverter(this.curriculumVitaeDao.findAll(), CurriculumVitaeDto.class),"Data getirildi");
 	}
+
+
+	@Override
+	public CurriculumVitae getByCandidateId(int id) {
+		return this.curriculumVitaeDao.getByCandidateId(id);
+	}
+
+
+//	@Override
+//	public List<CurriculumVitae> getByCandidateId(int id) {
+//		return this.curriculumVitaeDao.getByCandidateId(id);
+//		//return new SuccessResult<List<CurriculumVitae>>(this.curriculumVitaeDao.getByCandidateId(id), "CV bilgisi getirildi");
+//	}
 }

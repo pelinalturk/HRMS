@@ -8,5 +8,6 @@ import kodlamaio.Hrms.entities.concretes.CandidateFavorities;
 
 public interface CandidateFavoritiesService {
 	Result add(CandidateFavorities candidateFavorities);
-	DataResult<List<CandidateFavorities>> getAll();
+	DataResult<List<CandidateFavorities>> getById(int id);
+	Result delete(int id);
 }

@@ -59,4 +59,9 @@ public class CurriculumVitaesController {
 		return this.curriculumVitaeService.saveImage(file, curriculumVitaeID);
 		
 	}
+	
+	@GetMapping("/getByCandidateId")
+	CurriculumVitae getByCandidateId(int id){
+		return this.curriculumVitaeService.getByCandidateId(id);
+	}
 }

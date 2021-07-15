@@ -38,17 +38,13 @@ public class SchoolManager implements SchoolService{
 
 	@Override
 	public Result add(SchoolAddDto schoolAddDto) {
-		//endingDate boş gönderilebilmeli
-		if (schoolAddDto.getEndingDate() == null || schoolAddDto.getEndingDate().toString()=="string") {
-			schoolAddDto.setEndingDate(null);
-		}
 		this.schoolDao.save((School) dtoConverterService.dtoClassConverter(schoolAddDto, School.class));
 		return new SuccessResult("Data eklendi.");
 	}
 
 	@Override
 	public DataResult<List<School>> getBySchoolNameOrderByEndingDateDesc(int id) {
-		return new SuccessDataResult<List<School>>(this.schoolDao.findAllByCurriculumVitaeIdOrderByEndingDateDesc(id), "Mezuniyet yıllarına göre listelendi");
+		return new SuccessDataResult<List<School>>(this.schoolDao.findAllByCandidateIdOrderByEndingDateDesc(id), "Mezuniyet yıllarına göre listelendi");
 	}
 
 

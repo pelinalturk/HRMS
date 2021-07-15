@@ -21,7 +21,7 @@ public class SchoolAddDto {
 	
 	private int id;
 	
-	private int curriculumVitaeId;
+	private int candidateId;
 	private String schoolName;
 	private int degreeId;
 	private String schoolDepartment;

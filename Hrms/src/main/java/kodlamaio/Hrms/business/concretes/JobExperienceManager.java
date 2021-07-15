@@ -21,19 +21,15 @@ public class JobExperienceManager implements JobExperienceService{
 
 	private JobExperienceDao jobExperienceDao;
 	private DtoConverterService dtoConverterService;
-	//private ModelMapper modelMapper;
+	
 	@Autowired
 	public JobExperienceManager(JobExperienceDao jobExperienceDao, DtoConverterService dtoConverterService) {
 		super();
 		this.jobExperienceDao = jobExperienceDao;
 		this.dtoConverterService=dtoConverterService;
-		//this.modelMapper=modelMapper;
+		
 	}
 	
-//	private JobExperience dtoConverter(JobExperienceAddDto experienceAddDto) {
-//		return modelMapper.map(experienceAddDto, JobExperience.class);
-//	}
-
 	@Override
 	public DataResult<List<JobExperienceGetDto>> getAll() {
 		return new SuccessDataResult<List<JobExperienceGetDto>>
@@ -48,7 +44,8 @@ public class JobExperienceManager implements JobExperienceService{
 
 	@Override
 	public DataResult<List<JobExperience>> findAllByCurriculumVitaeIdOrderByEndingDateDesc(int id) {
-		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.findAllByCurriculumVitaeIdOrderByEndingDateDesc(id), "İş tecrübeleri bitiş tarihlerine göre sıralandı.");
+		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.findAllByCandidateIdOrderByEndingDateDesc(id), "İş tecrübeleri bitiş tarihlerine göre sıralandı.");
+		
 	}
 
 	@Override

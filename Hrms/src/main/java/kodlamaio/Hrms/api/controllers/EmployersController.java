@@ -22,12 +22,12 @@ import kodlamaio.Hrms.entities.dtos.EmployerUpdateDto;
 @RestController
 @RequestMapping("/api/employers")
 @CrossOrigin
-public class EmployerController {
+public class EmployersController {
 	private EmployerService employerService;
 	
 	
 	@Autowired
-	public EmployerController(EmployerService employerService)
+	public EmployersController(EmployerService employerService)
 	{
 		super();
 		this.employerService=employerService;
@@ -57,8 +57,18 @@ public class EmployerController {
 		return employerService.confirmUpdate(employerUpdateDto, employerId);
 	}
 	
-	@GetMapping("/update/confirm")//onay
-	public DataResult<Employer> updateEmployer( @RequestParam int employeeId, @RequestParam int employerId){
+	@PostMapping("/update/confirm")//onay
+	public DataResult<Employer> updateEmployer(@RequestParam int employeeId, @RequestParam int employerId){
 		return employerService.updateEmployer(employeeId, employerId);
+	}
+	
+	@GetMapping("/IsActiveTrueIsConfirmFalse")
+	public DataResult<List<Employer>> IsActiveTrueIsConfirmFalse() {
+		return this.employerService.IsActiveTrueIsConfirmFalse();
+	}
+	
+	@GetMapping("/login")
+	public Result login(@RequestParam String email, @RequestParam String password) {
+		return this.employerService.login(email, password);
 	}
 }

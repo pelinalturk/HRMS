@@ -15,7 +15,7 @@ public class JobExperienceGetDto {
 	@JsonIgnore
 	private int id;
 	
-	private int curriculumVitaeId;
+	private int candidateId;
 	private String jobPositionTitle;
 	private String companyName;
 	private LocalDate startingDate;

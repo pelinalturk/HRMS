@@ -18,5 +18,6 @@ public interface CurriculumVitaeService {
 	//DataResult<List<CandidateWithCvDto>> findByCandidateId(int id);
 	//List<CurriculumVitae> findBySchool_EndingDateDesc();
 	//List<CurriculumVitae> findByJobExperience_StartingDateDesc();
-	
+	//List<CurriculumVitae>getByCandidateId(int id);
+	CurriculumVitae getByCandidateId(int id);
 }

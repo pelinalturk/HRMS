@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class ForeignLanguageDto {
 	private int id;
 	private String language;
-	private int curriculumVitaeId;
+	private int candidateId;
 	@Min(1)
 	@Max(5)
 	private int languageLevel;

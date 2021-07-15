@@ -46,10 +46,12 @@ public class Employer extends User{
 	
 	@JsonIgnore
 	@Column(name ="is_active")
-	private boolean isActive;
+	private boolean isActive =true;
 	
+	@JsonIgnore
 	@Column(name ="is_confirm")
-	private boolean isConfirm;
+	private boolean isConfirm =false;
+	
 	
 	@JsonIgnore
 	@Column(name= "record_date")

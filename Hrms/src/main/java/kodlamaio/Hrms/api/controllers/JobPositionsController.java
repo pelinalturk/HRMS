@@ -20,12 +20,12 @@ import kodlamaio.Hrms.entities.concretes.JobPosition;
 @RestController
 @RequestMapping("/api/job_titles")
 @CrossOrigin
-public class JobPositionController {
+public class JobPositionsController {
 	
 	private JobPositionService jobPositionService;
 	
 	@Autowired
-	public JobPositionController(JobPositionService jobPositionService) {
+	public JobPositionsController(JobPositionService jobPositionService) {
 		super();
 		this.jobPositionService = jobPositionService;
 	}

@@ -13,4 +13,5 @@ public interface ForeignLanguageService {
 	Result update(int languageLevel, int id);
 	Result delete(int id);
 	DataResult<ForeignLanguage> getByLanguage(String language);
+	List<ForeignLanguage> getByCandidateId(int id);
 }

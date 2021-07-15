@@ -20,11 +20,11 @@ import kodlamaio.Hrms.entities.concretes.GraduateDegree;
 @RestController
 @RequestMapping("/api/graduadeDegreeController")
 @CrossOrigin
-public class GraduateDegreeController {
+public class GraduateDegreesController {
 	private GraduateDegreeService graduateDegreeService;
 
 	@Autowired
-	public GraduateDegreeController(GraduateDegreeService graduateDegreeService) {
+	public GraduateDegreesController(GraduateDegreeService graduateDegreeService) {
 		super();
 		this.graduateDegreeService = graduateDegreeService;
 	}

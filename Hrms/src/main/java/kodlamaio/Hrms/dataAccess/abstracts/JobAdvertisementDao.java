@@ -21,6 +21,10 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	List<JobAdvertisement>findByIsConfirm(boolean confirm);
 	List<JobAdvertisement> getByEmployer_Id(int id);
 	List<JobAdvertisement> findByIsActiveTrueAndIsConfirmTrue();
+	
+	@Query("From JobAdvertisement where isActive=true and applicationDeadline>=now()")
+	List<JobAdvertisement>activeTrue(Pageable pageable);
+	
 	List<JobAdvertisement> getByPositionLevelId(int id);
 	List<JobAdvertisement> getByJobPositionId(int id);
 	 @Query("Select j from kodlamaio.Hrms.entities.concretes.JobAdvertisement j where ((:#{#filter.cityId}) IS NULL OR j.city.id IN (:#{#filter.cityId}))"
@@ -28,6 +32,6 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 		        +" and ((:#{#filter.mannerOfWorkId}) IS NULL OR j.mannerOfWork.id IN (:#{#filter.mannerOfWorkId}))"
 		        +" and ((:#{#filter.workingHourId}) IS NULL OR j.workingHour.id IN (:#{#filter.workingHourId}))"
 		        + "and ((:#{#filter.positionLevelId}) IS NULL OR j.positionLevel.id IN (:#{#filter.positionLevelId}))"
-		        +" and j.isActive=true")
+		        +" and j.isActive=true and j.applicationDeadline>=now()")
 	 public Page<JobAdvertisement> getByFilter(@Param("filter") JobAdvertisementsFilterDto jobAdvertisementFilter, Pageable pageable);
 }

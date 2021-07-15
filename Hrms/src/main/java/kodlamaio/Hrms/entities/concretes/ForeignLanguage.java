@@ -37,9 +37,9 @@ public class ForeignLanguage {
 	private int id;
 	
 	@JsonProperty(access = Access.WRITE_ONLY)
-	@ManyToOne(targetEntity = CurriculumVitae.class)
-	@JoinColumn(name = "curriculum_vitae_id")
-	private CurriculumVitae curriculumVitae;
+	@ManyToOne(targetEntity = Candidate.class)
+	@JoinColumn(name = "candidate_id")
+	private Candidate candidate;
 	
 	@NotBlank(message = "Dil alanı boş geçilemez!")
 	@Column(name = "language")

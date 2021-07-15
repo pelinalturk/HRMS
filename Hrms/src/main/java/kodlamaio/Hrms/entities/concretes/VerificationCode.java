@@ -47,5 +47,5 @@ public class VerificationCode{
 	@ManyToOne(targetEntity = User.class ,fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "user_id", referencedColumnName =  "id" ,nullable = false)
 	@JsonIgnore
-	private User user_id;
+	private User user;
 }

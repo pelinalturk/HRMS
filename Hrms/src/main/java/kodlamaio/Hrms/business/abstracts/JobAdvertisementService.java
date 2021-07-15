@@ -20,9 +20,10 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisementDto>>findByIsConfirm(boolean confirm);
 	List<JobAdvertisement> getByEmployerId(int id);
 	DataResult<List<JobAdvertisement>> findByIsActiveTrueAndIsConfirmTrue();
+	List<JobAdvertisement>activeTrue(int pageNo, int pageSize);
 	DataResult<List<JobAdvertisement>> findByIsActiveTrueAndIsConfirmTrue(int pageNo, int pageSize);
 	DataResult<List<JobAdvertisement>> getByPositionLevelId(int id);
 	DataResult<List<JobAdvertisement>> getByJobPositionId(int id);
 	DataResult<List<JobAdvertisement>> getByFilterJob(int pageNo, int pageSize, JobAdvertisementsFilterDto jobAdvertisementFilter);
-
+	Result isActiveChange (int id);
 }

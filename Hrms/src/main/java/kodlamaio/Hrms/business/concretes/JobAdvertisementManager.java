@@ -117,4 +117,18 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	    (this.JobAdvertisementDao.getByFilter(jobAdvertisementFilter, pageable).getContent(), 
 	     this.JobAdvertisementDao.getByFilter(jobAdvertisementFilter,pageable).getTotalElements()+"");
 	}
+
+	@Override
+	public Result isActiveChange(int id) {
+		JobAdvertisement jobAdvertisement = JobAdvertisementDao.getById(id);
+		jobAdvertisement.setActive(false);
+		JobAdvertisementDao.save(jobAdvertisement);
+		return new SuccessResult("İş ilanı yayından kaldırıldı.");
+	}
+
+	@Override
+	public List<JobAdvertisement> activeTrue(int pageNo, int pageSize) {
+		PageRequest pageable = PageRequest.of(pageNo-1, pageSize);
+		return this.JobAdvertisementDao.activeTrue(pageable);
+	}
 }

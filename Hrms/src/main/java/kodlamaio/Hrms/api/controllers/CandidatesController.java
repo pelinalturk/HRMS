@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.Hrms.business.abstracts.CandidateService;
@@ -19,11 +20,11 @@ import kodlamaio.Hrms.entities.concretes.Candidate;
 @RestController
 @RequestMapping("/api/candidates")
 @CrossOrigin
-public class CandidateController {
+public class CandidatesController {
 	private CandidateService candidateService;
 	
 	@Autowired
-	public CandidateController(CandidateService candidateService)
+	public CandidatesController(CandidateService candidateService)
 	{
 		super();
 		this.candidateService=candidateService;
@@ -43,5 +44,15 @@ public class CandidateController {
 	@PostMapping("/update")
 	public Result update( @RequestBody Candidate candidate) {
 		return this.candidateService.update(candidate);
+	}
+	
+	@GetMapping("/getById")
+	public Candidate getById(@RequestParam int id) {
+		return this.candidateService.getById(id);
+	}
+	
+	@GetMapping("/login")
+	public Result login(@RequestParam String email, @RequestParam String password) {
+		return this.candidateService.login(email, password);
 	}
 }

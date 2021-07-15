@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
@@ -39,5 +40,9 @@ public class User {
 	@NotBlank(message = "Şifre alanı boş bırakılamaz!")
 	@Column(name="password")
 	private String password;
+	
+	@Transient()
+	@Column(name = "password_repeat")
+	private String passwordRepeat;
 	
 }

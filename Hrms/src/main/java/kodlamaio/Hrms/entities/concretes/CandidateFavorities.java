@@ -28,13 +28,6 @@ public class CandidateFavorities {
 	@ManyToOne(targetEntity = JobAdvertisement.class)
 	private JobAdvertisement jobAdvertisement;
 	
-//	@ManyToMany
-//	@JoinColumn(name = "candidate_id")
-//	private Candidate candidate;
-	
-//	@ManyToMany(mappedBy = "candidatefavorities")
-//	List<Candidate> candidates;
-	
 	@ManyToOne(targetEntity = Candidate.class)
 	private Candidate candidate;
 }

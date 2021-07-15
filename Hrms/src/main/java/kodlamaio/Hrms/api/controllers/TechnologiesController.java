@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.Hrms.business.abstracts.TechnologyService;
 import kodlamaio.Hrms.core.utilities.result.DataResult;
 import kodlamaio.Hrms.core.utilities.result.Result;
+import kodlamaio.Hrms.entities.concretes.Technology;
 import kodlamaio.Hrms.entities.dtos.TechnologyDto;
 
 @RestController
@@ -45,5 +47,10 @@ public class TechnologiesController {
 	@DeleteMapping("{id}")
 	public Result delete(@PathVariable("id") int id) {
 		return this.technologyService.delete(id);
+	}
+	
+	@GetMapping("/getByCandidateId")
+	public List<Technology> getByCandidateId(@RequestParam int id) {
+		return this.technologyService.getByCandidateId(id);
 	}
 }

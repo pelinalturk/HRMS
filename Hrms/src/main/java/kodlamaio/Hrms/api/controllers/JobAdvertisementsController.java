@@ -5,9 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,12 +22,12 @@ import kodlamaio.Hrms.entities.dtos.JobAdvertisementsFilterDto;
 @RestController
 @RequestMapping("/api/JobAdvertisement")
 @CrossOrigin
-public class JobAdvertisementController {
+public class JobAdvertisementsController {
 	
 	private JobAdvertisementService jobAdvertisementService;
 	
 	@Autowired
-	public JobAdvertisementController(JobAdvertisementService jobAdvertisementService) {
+	public JobAdvertisementsController(JobAdvertisementService jobAdvertisementService) {
 		super();
 		this.jobAdvertisementService = jobAdvertisementService;
 	}
@@ -70,6 +68,11 @@ public class JobAdvertisementController {
 		return this.jobAdvertisementService.findByIsActiveTrueAndIsConfirmTrue();
 	}
 	
+	@GetMapping("/activeTrue")
+	public List<JobAdvertisement> activeTrue(int pageNo, int pageSize) {
+		return this.jobAdvertisementService.activeTrue( pageNo,  pageSize);
+	}
+	
 	@GetMapping("/getByConfirm")
 	public DataResult<List<JobAdvertisementDto>> findByIsConfirm(@RequestParam boolean confirm) {
 		return this.jobAdvertisementService.findByIsConfirm(confirm);
@@ -95,8 +98,13 @@ public class JobAdvertisementController {
 		return this.jobAdvertisementService.getByJobPositionId(id);
 	}
 	
-	 @PostMapping("/getByFilter")
-	    public Result getByFilterJob(@RequestParam int pageNo,@RequestParam int pageSize,@RequestBody JobAdvertisementsFilterDto jobAdvertisementFilter){
-	        return jobAdvertisementService.getByFilterJob(pageNo,pageSize,jobAdvertisementFilter);
-	    }
+	@PostMapping("/getByFilter")
+	 public Result getByFilterJob(@RequestParam int pageNo,@RequestParam int pageSize,@RequestBody JobAdvertisementsFilterDto jobAdvertisementFilter){
+		 return jobAdvertisementService.getByFilterJob(pageNo,pageSize,jobAdvertisementFilter);
+	 }
+	 
+	 @PostMapping("/changeIsConfirm")
+	 public Result isActiveChange(@RequestParam int id) {
+		 return this.jobAdvertisementService.isActiveChange(id);
+	 }
 }
