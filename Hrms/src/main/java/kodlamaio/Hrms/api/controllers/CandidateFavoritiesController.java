@@ -45,4 +45,9 @@ public class CandidateFavoritiesController {
 	public Result delete(@PathVariable("id") int id) {
 		return this.candidateFavoritiesService.delete(id);
 	}
+	
+	@GetMapping("/getByJobId")
+	public  boolean  getByJobId(@RequestParam int id) { 
+		return this.candidateFavoritiesService.getByJobId(id);
+	}
 }

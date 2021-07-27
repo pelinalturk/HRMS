@@ -10,4 +10,5 @@ public interface CandidateFavoritiesService {
 	Result add(CandidateFavorities candidateFavorities);
 	DataResult<List<CandidateFavorities>> getById(int id);
 	Result delete(int id);
+	boolean getByJobId(int id);
 }

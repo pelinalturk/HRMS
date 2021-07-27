@@ -9,4 +9,5 @@ import kodlamaio.Hrms.entities.concretes.CandidateFavorities;
 public interface CandidateFavoritiesDao extends JpaRepository<CandidateFavorities, Integer>{
 	List<CandidateFavorities> getByCandidateId(int candidateId);
 	boolean existsByJobAdvertisement_Id(int id);
+	CandidateFavorities getByJobAdvertisementId(int id);
 }

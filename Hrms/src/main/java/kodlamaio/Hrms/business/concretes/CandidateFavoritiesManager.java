@@ -45,4 +45,11 @@ public class CandidateFavoritiesManager implements CandidateFavoritiesService{
 		return new SuccessResult("Favorilerden kaldırıldı.");
 	}
 
+	@Override
+	public boolean getByJobId(int id) {
+		if(this.candidateFavoritiesDao.getByJobAdvertisementId(id) != null) {
+			return new SuccessResult().isSuccess();
+		}
+		return false;
+	}
 }

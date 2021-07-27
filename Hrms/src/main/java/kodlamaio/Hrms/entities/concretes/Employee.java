@@ -40,7 +40,7 @@ public class Employee extends User{
 	@Column(name ="is_active")
 	private boolean isActive = true;
 	
-	@JsonIgnore
+	
 	@Column(name= "record_date")
 	@CreationTimestamp
 	@Temporal(javax.persistence.TemporalType.DATE)

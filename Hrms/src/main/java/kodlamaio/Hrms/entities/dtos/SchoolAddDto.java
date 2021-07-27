@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Temporal;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.CreationTimestamp;
 
