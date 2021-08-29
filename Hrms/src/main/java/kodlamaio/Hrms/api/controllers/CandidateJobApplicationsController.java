@@ -34,7 +34,12 @@ public class CandidateJobApplicationsController {
 		return this.candidateJobApplicationService.add(candidateJobApplication);
 	}
 	
-	@GetMapping("/GetAll")
+	@GetMapping("/getAll")
+	public DataResult<List<CandidateJobApplication>> getAll() {
+		return this.candidateJobApplicationService.getAll();
+	}
+	
+	@GetMapping("/getByCandidateId")
 	public DataResult<List<CandidateJobApplication>> getByCandidateId(@RequestParam int id) {
 		return this.candidateJobApplicationService.getByCandidateId(id);
 	}
@@ -47,5 +52,15 @@ public class CandidateJobApplicationsController {
 	@GetMapping("/getByJobAdvertisementId")
 	public DataResult<List<CandidateJobApplication>> getByJobAdvertisementId(int id) {
 		return this.candidateJobApplicationService.getByJobAdvertisementId(id);
+	}
+	
+	@GetMapping("/getByJobId")
+	public  boolean  getByJobId(@RequestParam int id) { 
+		return this.candidateJobApplicationService.getByJobId(id);
+	}
+	
+	@GetMapping("/getByJobIdAndEmployerId")
+	public List<CandidateJobApplication> getByEmployerIdAndJobAdvertisementId(int employerId, int jobAdvertisementId) {
+		return this.candidateJobApplicationService.getByEmployerIdAndJobAdvertisementId(employerId, jobAdvertisementId);
 	}
 }

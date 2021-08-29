@@ -35,7 +35,6 @@ public class EmployerManager implements EmployerService{
 	EmployeeConfirmService employeeConfirmService;
 	EmployerUpdateDao employerUpdateDao;
 	EmployeeService employeeService;
-	
 	@Autowired
 	public EmployerManager(EmployerDao employerDao,UserDao userDao,EmployeeService employeeService, VerificationCodeService verificationCodeService,EmployeeConfirmService employeeConfirmService, EmployerUpdateDao employerUpdateDao) 
 	{
@@ -46,6 +45,7 @@ public class EmployerManager implements EmployerService{
 		this.employeeConfirmService = employeeConfirmService;
 		this.employerUpdateDao = employerUpdateDao;
 		this.employeeService = employeeService;
+	
 	}
 	
 	public boolean webAdresControl(String webAdres, String mail) {
@@ -72,7 +72,7 @@ public class EmployerManager implements EmployerService{
 	}
 	
 	@Override
-	public Result add(Employer employer) {
+	public Result add(Employer employer) throws Exception {
 		if(this.userDao.findByEmail(employer.getEmail()) !=null) {
 		  return new ErrorResult("Bu mail adresi sistemde kayıtlıdır.");
 		}
@@ -142,4 +142,5 @@ public class EmployerManager implements EmployerService{
 		}
 		return new SuccessResult("Giriş başarılı.");
 	}
+
 }

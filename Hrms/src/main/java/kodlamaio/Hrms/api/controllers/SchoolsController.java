@@ -53,4 +53,9 @@ public class SchoolsController {
 	public Result delete(@PathVariable("id") int id) {
 		return this.schoolService.delete(id);
 	}
+	
+	@PostMapping("/update")
+	public Result update(@Valid @RequestBody SchoolAddDto schoolAddDto) {
+		return this.schoolService.update(schoolAddDto);
+	}
 }

@@ -19,7 +19,6 @@ import kodlamaio.Hrms.core.utilities.result.DataResult;
 import kodlamaio.Hrms.core.utilities.result.Result;
 import kodlamaio.Hrms.entities.concretes.JobExperience;
 import kodlamaio.Hrms.entities.dtos.JobExperienceAddDto;
-import kodlamaio.Hrms.entities.dtos.JobExperienceGetDto;
 
 @RestController
 @RequestMapping("/api/jobExperiencesController")
@@ -34,7 +33,7 @@ public class JobExperiencesController {
 	}
 	
 	@GetMapping("/getAll")
-	public DataResult<List<JobExperienceGetDto>> getAll(){
+	public DataResult<List<JobExperience>> getAll(){
 		return this.experienceService.getAll();
 	}
 	
@@ -52,4 +51,8 @@ public class JobExperiencesController {
 	public Result delete(@PathVariable("id") int id) {
 		return this.experienceService.delete(id);
 	}
-}
+	
+	@PostMapping("update")
+	public Result update(@RequestBody JobExperience jobExperience) {
+		return this.experienceService.update(jobExperience);}
+	}

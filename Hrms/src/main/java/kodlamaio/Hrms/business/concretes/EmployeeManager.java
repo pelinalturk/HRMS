@@ -57,12 +57,15 @@ public class EmployeeManager implements EmployeeService{
 			employee.setRecordTime(getEmployee.getRecordTime());
 		}
 		this.employeeDao.save(employee);
+		
 		return new SuccessResult("Bilgileriniz güncellendi.");
+		
 	}
 
 	@Override
 	public Employee findById(int id) {
 		return this.employeeDao.findById(id).get();
 	}
+
 
 }

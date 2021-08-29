@@ -53,4 +53,9 @@ public class TechnologiesController {
 	public List<Technology> getByCandidateId(@RequestParam int id) {
 		return this.technologyService.getByCandidateId(id);
 	}
+	
+	@PostMapping("/update")
+	public Result update(@Valid @RequestBody TechnologyDto technologyDto) {
+		return this.technologyService.update(technologyDto);
+	}
 }

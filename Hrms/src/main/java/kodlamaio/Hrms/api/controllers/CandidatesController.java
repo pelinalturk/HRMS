@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.Hrms.business.abstracts.CandidateService;
+import kodlamaio.Hrms.core.utilities.result.DataResult;
 import kodlamaio.Hrms.core.utilities.result.Result;
 import kodlamaio.Hrms.entities.concretes.Candidate;
+import kodlamaio.Hrms.entities.dtos.CandidateWithCvDto;
 
 @RestController
 @RequestMapping("/api/candidates")
@@ -54,5 +56,10 @@ public class CandidatesController {
 	@GetMapping("/login")
 	public Result login(@RequestParam String email, @RequestParam String password) {
 		return this.candidateService.login(email, password);
+	}
+	
+	@GetMapping("getCv")
+	public DataResult<List<CandidateWithCvDto>> getByCandidateId(@RequestParam int id) {
+		return this.candidateService.getByCandidateId(id);
 	}
 }

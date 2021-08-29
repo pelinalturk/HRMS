@@ -51,4 +51,10 @@ public class TechnologyManager implements TechnologyService{
 		return this.technologyDao.getByCandidateId(id);
 	}
 
+	@Override
+	public Result update(TechnologyDto technologyDto) {
+		this.technologyDao.save((Technology) dtoConverterService.dtoClassConverter(technologyDto, Technology.class));
+		return new SuccessResult("Güncellendi.");
+	}
+
 }

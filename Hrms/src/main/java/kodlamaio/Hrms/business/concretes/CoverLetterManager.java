@@ -41,5 +41,11 @@ public class CoverLetterManager implements CoverLetterService{
 	public List<CoverLetter> getByCandidateId(int id) {
 		return this.coverLetterDao.getByCandidateId(id);
 	}
+
+	@Override
+	public Result update(CoverLetterAddDto coverLetter) {
+		 this.coverLetterDao.save((CoverLetter) dtoConverterService.dtoClassConverter(coverLetter, CoverLetter.class));
+		 return new SuccessResult("Güncellendi.");
+	}
 	
 }

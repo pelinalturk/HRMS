@@ -10,4 +10,4 @@ public interface CoverLetterService {
 	Result add(CoverLetterAddDto coverLetter);
 	Result delete(int id);
 	List<CoverLetter> getByCandidateId(int id);
-}
+	Result update(CoverLetterAddDto coverLetter);}

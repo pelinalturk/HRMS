@@ -10,7 +10,7 @@ import kodlamaio.Hrms.entities.dtos.EmployerUpdateDto;
 
 public interface EmployerService {
 	DataResult<List<Employer>> getall();
-	Result add(Employer employer);
+	Result add(Employer employer) throws Exception;
 	DataResult<List<Employer>>findByIsConfirm(boolean confirm);
 	Employer getById(int id);
 	DataResult<EmployerUpdate> confirmUpdate(EmployerUpdateDto employerUpdateDto, int employerId);

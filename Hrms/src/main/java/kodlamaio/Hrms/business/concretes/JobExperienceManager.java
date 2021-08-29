@@ -14,13 +14,13 @@ import kodlamaio.Hrms.core.utilities.result.SuccessResult;
 import kodlamaio.Hrms.dataAccess.abstracts.JobExperienceDao;
 import kodlamaio.Hrms.entities.concretes.JobExperience;
 import kodlamaio.Hrms.entities.dtos.JobExperienceAddDto;
-import kodlamaio.Hrms.entities.dtos.JobExperienceGetDto;
 
 @Service
 public class JobExperienceManager implements JobExperienceService{
 
 	private JobExperienceDao jobExperienceDao;
 	private DtoConverterService dtoConverterService;
+	private JobExperience jobExp;
 	
 	@Autowired
 	public JobExperienceManager(JobExperienceDao jobExperienceDao, DtoConverterService dtoConverterService) {
@@ -31,9 +31,9 @@ public class JobExperienceManager implements JobExperienceService{
 	}
 	
 	@Override
-	public DataResult<List<JobExperienceGetDto>> getAll() {
-		return new SuccessDataResult<List<JobExperienceGetDto>>
-		(this.dtoConverterService.dtoConverter(this.jobExperienceDao.findAll(), JobExperienceGetDto.class),"Data Listelendi");
+	public DataResult<List<JobExperience>> getAll() {
+		return new SuccessDataResult<List<JobExperience>>
+		(this.jobExperienceDao.findAll(),"Data Listelendi");
 	}
 
 	@Override
@@ -52,6 +52,14 @@ public class JobExperienceManager implements JobExperienceService{
 	public Result delete(int id) {
 		this.jobExperienceDao.deleteById(id);
 		return new SuccessResult("Data Silindi");
+	}
+
+	@Override
+	public Result update(JobExperience jobExperience) {
+		jobExp= this.jobExperienceDao.getOne(jobExperience.getId());
+		if(jobExperience.getCreationDate() == null) {jobExperience.setCreationDate(jobExp.getCreationDate());}
+		this.jobExperienceDao.save(jobExperience);
+		return new SuccessResult("Güncellendi");
 	}
 
 }

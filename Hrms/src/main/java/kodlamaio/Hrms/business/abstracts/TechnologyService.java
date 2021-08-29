@@ -12,4 +12,5 @@ public interface TechnologyService {
 	Result add(TechnologyDto technologyDto);
 	Result delete(int id);
 	List<Technology>getByCandidateId(int id);
+	Result update(TechnologyDto technologyDto);
 }

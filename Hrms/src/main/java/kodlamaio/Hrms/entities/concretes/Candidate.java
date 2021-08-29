@@ -3,9 +3,11 @@ package kodlamaio.Hrms.entities.concretes;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -54,6 +56,30 @@ public class Candidate extends User{
 	@JsonIgnore
 	@Column(name ="is_active")
 	private boolean isActive=true;
+	
+	@OneToMany(mappedBy = "candidate")
+	@JsonIgnore
+	private List<School> school;
+	
+	@OneToMany(mappedBy = "candidate")
+	@JsonIgnore
+	private List<Technology> technology;
+	
+	@OneToMany(mappedBy = "candidate")
+	@JsonIgnore
+	private List<ForeignLanguage> foreignLanguage;
+	
+	@OneToMany(mappedBy = "candidate")
+	@JsonIgnore
+	private List<JobExperience> jobExperience;
+	
+	@OneToMany(mappedBy = "candidate")
+	@JsonIgnore
+	private List<CoverLetter> coverLetter;
+	
+	@OneToMany(mappedBy = "candidate")
+	@JsonIgnore
+	private List<SocialMedia> socialMedia;
 	
 	@JsonIgnore
 	@JsonProperty(access = Access.WRITE_ONLY)

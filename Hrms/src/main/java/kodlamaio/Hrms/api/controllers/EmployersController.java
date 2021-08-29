@@ -43,7 +43,7 @@ public class EmployersController {
 		return this.employerService.findByIsConfirm(confirm);
 	}
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody Employer employer) {
+	public Result add(@Valid @RequestBody Employer employer) throws Exception {
 		return this.employerService.add(employer);
 	}
 	

@@ -10,4 +10,5 @@ import kodlamaio.Hrms.entities.dtos.EmployeeConfirmDto;
 public interface EmployeeConfirmService {
 	Result add(EmployeeConfirm employeeConfirm);
 	DataResult<List<EmployeeConfirmDto>> findByIsActive(boolean isActive);
+
 }

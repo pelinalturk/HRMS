@@ -44,4 +44,9 @@ public class CoverLettersController {
 	public Result delete(@PathVariable("id") int id) {
 		return this.coverLetterService.delete(id);
 	}
+	
+	@PostMapping("/update")
+	public Result update(@RequestBody CoverLetterAddDto coverLetter) {
+		return this.coverLetterService.update(coverLetter);
+	}
 }

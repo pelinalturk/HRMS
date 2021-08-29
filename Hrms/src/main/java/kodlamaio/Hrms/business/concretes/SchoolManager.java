@@ -54,4 +54,11 @@ public class SchoolManager implements SchoolService{
 		return new SuccessResult("Data Silindi ");
 	}
 
+
+	@Override
+	public Result update(SchoolAddDto schoolAddDto) {
+		this.schoolDao.save((School) dtoConverterService.dtoClassConverter(schoolAddDto, School.class));
+		return new SuccessResult("Güncellendi.");
+	}
+
 }

@@ -10,4 +10,7 @@ public interface CandidateJobApplicationDao extends JpaRepository<CandidateJobAp
 	List<CandidateJobApplication> getByCandidateId(int id);
 	List<CandidateJobApplication> getByJobAdvertisementEmployerId(int id);
 	List<CandidateJobApplication> getByJobAdvertisementId(int id);
+	boolean existsByCandidateIdAndJobAdvertisementId(int candidateId, int jobAdvertisementId);
+	CandidateJobApplication getByJobAdvertisement_Id(int id);
+	List<CandidateJobApplication>getByJobAdvertisementEmployerIdAndJobAdvertisementId(int employerId, int jobAdvertisementId);
 }
